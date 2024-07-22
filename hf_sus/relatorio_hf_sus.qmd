@@ -1,0 +1,417 @@
+---
+title: "HF - SUS"
+author: "Danilo Imbimbo, Pedro Buril, Raulino Sabino - NCS"
+format: html
+editor: visual
+---
+
+# Estimativa de Cálculo do HF.1.1.1 (SUS)
+
+## Introdução
+
+Esse documento tem como objetivo realizar uma estimativa do HF.1.1.1 (Sistema Único de Saúde) por meio da metodologia do System of Health Accounts, com base nos documentos encontrados acerca do SHA brasileiro e no que foi possível recuperar da metodologia construída pelo grupo de contas.
+
+A HF.1.1.1 se refere ao esquema de financiamento (HF) do Sistema Único de Saúde (SUS), sistema universal que possui como público-alvo toda a população brasileira. O SUS é o esquema de financiamento mais relevante em termos de volume de recursos. Seu financiamento é tripartite, ou seja, financiado por União, Estados e Municípios, havendo uma legislação que estabelece os investimentos mínimos em saúde por cada esfera de governo. Suas receitas provêm majoritariamente por meio de tributos. Todavia, além disso, dispõe de transferências de governos estrangeiros, doações, bem como de outras receitas domésticas.
+
+Dessa forma, consideram-se as despesas SUS aquelas que se referem ao atendimento universal, e não a todo gasto público em saúde. Essa diferenciação é relevante, pois, existem regimes de financiamento públicos não universais, como os gastos com saúde dos servidores civis e militares. Assim, se encaixam nessa lógica as despesas efetuadas por Ministério da Saúde (União), Estados e Municípios, sendo as despesas da União compostas pelas despesas do Ministério da Saúde e do Ministério da Educação (MEC) com Hospitais Universitários, que além de centros de formação de recursos humanos, prestam assistência ao SUS, sendo centros de referência de média e alta complexidade. Esses hospitais são geridos pela Empresa Brasileira de Serviços Hospitalares (Ebserh), vinculada ao MEC.
+
+Destarte, esta nota técnica apresentará os métodos e técnicas realizadas para a estimativa das despesas com a HF.1.1.1 para as três esferas de governo, somadas as despesas do MEC, que se somam as despesas da União.
+
+## Fontes de Dados
+
+Esse trabalho utiliza os dados extraídos do Sistema Integrado de Administração Financeira (SIAFI), considerando a execução orçamentária do Ministério da Saúde do Ministério da Educação (Hospitais Universitários), bem como os dados do Sistema de Informações sobre Orçamentos Públicos em Saúde.
+
+O SIAFI é o principal instrumento para registro, acompanhamento e controle da execução orçamentária do governo federal, contendo informações sobre toda a Administração Pública Direta federal, além de autarquias, fundações, empresas públicas e sociedades de economia mista, considerando o Orçamento Fical ou Orçamento da Seguridade Social. Por outro lado, o SIOPS contempla os registros de receitas e despesas em todos os entes federados.
+
+Os dados do SIAFI são extraídos pelo Tesouro Gerencial em relatórios .xlsx a partir dos filtros selecionados. No caso, foi extraído um relatório a partir da Função 10, que consolida as despesas classificadas como Saúde.
+
+No caso do SIOPS, foram solicitados os dados para a equipe responsável, a Coordenação de Informações sobre Orçamentos Públicos em Saúde (CSIOPS), da Coordenação-Geral de Informações em Economia da Saúde, do Departamento de Economia e Desenvolvimento da Saúde (CGES/DESID), de acordo com a estrutura regimental do Ministério da Saúde aprovada por meio do Decreto Nº 11.798, de 28 de Novembro de 2023. Esses dados foram encaminhados também em arquivos .xlsx.
+
+## Running Code
+
+A partir daqui, serão apresentados os códigos gerados para a realização das estimações.
+
+### Limpeza de Ambiente e carregamento dos pacotes
+
+São utilizados sete principais pacotes para essa estimativa: readxl, dplyr, tidyr, knitr, kableExtra, zoo, reshape2 e ggplot2.
+
+```{r}
+gc()
+rm(list=ls())
+
+print("Ambiente Limpo")
+```
+
+```{r}
+#| warning: false
+
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+library(zoo)
+library(reshape2)
+library(ggplot2)
+```
+
+### Importando a base de dados do SIAFI
+
+```{r}
+diretorio <- getwd()
+lista_dfs <- list()
+
+arquivos <- list.files(diretorio, pattern = "\\.xlsx$", full.names = TRUE)
+for (arquivo in arquivos) {
+  # Ler o arquivo xlsx
+  df <- read_excel(arquivo)
+  
+  # Determinar a origem do orçamento
+  if (grepl("EDUCACAO", basename(arquivo), ignore.case = TRUE)) {
+    origem <- "EDUCACAO"
+  } else if (grepl("SAUDE", basename(arquivo), ignore.case = TRUE)) {
+    origem <- "SAUDE"
+  } else {
+    origem <- "OUTRO"
+  }
+   
+  # Adicionar a coluna ORIGEM_ORÇAMENTO
+  df <- mutate(df, ORIGEM_ORÇAMENTO = origem)
+  
+  # Adicionar o data frame modificado à lista
+  lista_dfs[[length(lista_dfs) + 1]] <- df
+}
+
+# Concatenar todos os data frames em um único data frame
+df_final <- bind_rows(lista_dfs)
+
+rm(df, lista_dfs)
+```
+
+### Realização de teste de verificação
+
+Realização de testes na base de dados a fim de verificar se a extração e importação estão corretos.
+
+```{r}
+teste_despesas <- df_final %>% 
+  group_by(`Ano Lançamento`, ORIGEM_ORÇAMENTO) %>% 
+  summarise(sum(`DESPESAS PAGAS`, na.rm = T))
+
+rm(teste_despesas)
+
+gc()
+```
+
+### Calculando o gasto MEC com saúde
+
+Entendendo a necessidade de consolidação das despesas com Hospitais Universitários, a execução orçamentária do Ministério da Educação (MEC) é essencial. Essas despesas são alocadas no MEC. Dessa forma, essas despesas são estimadas da seguinte forma:
+
+Considerou-se o montante de despesas da Função Educação (Função 12) identificado como despesas correntes (Categoria Econômica Despesa = 3) e realizadas pelas Unidades Gestoras relacionadas aos estabelecimentos de saúde das Universidades Federais (Tabela 1), bem como as despesas nas ações 20XR e 4086. A ação 20XR se refere ao "Funcionamento de Instituições Federais de Ensino Superior" e a 4086 ao "Funcionamento e Gestão de Instituições Hospitalares Federais".
+
+```{r}
+HUs_ <- df_final %>%
+  filter(UO_Orgao_Maximo == "MINISTERIO DA EDUCACAO") %>% 
+  select("UG_Executora_COD", "UG_Executora") %>%
+  filter(grepl("HOSP|COMPLEXO HOSP|EBSERH|MATERNIDADE|DOENCAS DO TORAX DA UFRJ|GINECOLOGIA DA UFRJ|DEOLINDO COUTO DA UFRJ|PSIQUIATRIA DA UFRJ|PUERIC. PED MAT. GESTEIRA DA UFRJ|HUSM", UG_Executora) & !grepl("EXERCITO|MILITAR", UG_Executora)) %>%
+  unique()
+
+HUs_renamed <- HUs_ %>% 
+  rename('Código UF Executora' = UG_Executora_COD, 'UG Executora' = UG_Executora)
+
+kable(HUs_renamed, caption = "Tabela 1 - Lista de Hospitais Universitários") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F, 
+                position = "center")
+
+SHA_Uniao_MEC_acoes <- df_final %>%
+  filter(UO_Orgao_Maximo == "MINISTERIO DA EDUCACAO") %>% 
+  select(`Ano Lançamento`,UG_Executora_COD, UG_Executora, Subfuncao_COD, Acao_Cod, Categoria_Economica_Despesa_COD, `DESPESAS PAGAS`, `RESTOS A PAGAR PROCESSADOS PAGOS`, `RESTOS A PAGAR NAO PROCESSADOS PAGOS`) %>% 
+  filter(Categoria_Economica_Despesa_COD %in% "3") %>%
+  filter(UG_Executora_COD %in% HUs_$UG_Executora_COD | Acao_Cod %in% c("20RX", "4086")) %>% 
+  mutate_at(c("DESPESAS PAGAS", "RESTOS A PAGAR PROCESSADOS PAGOS", "RESTOS A PAGAR NAO PROCESSADOS PAGOS"), ~replace_na(.,0)) %>%
+  mutate(resultado = `DESPESAS PAGAS` + `RESTOS A PAGAR PROCESSADOS PAGOS` + `RESTOS A PAGAR NAO PROCESSADOS PAGOS`) %>%
+  select(`Ano Lançamento`, resultado) %>%
+  group_by(`Ano Lançamento`) %>%
+  summarise(resultado_final_mec = round(sum(resultado),2))
+```
+
+### Calculando a gasto do Ministério da Saúde
+
+As principais despesas do Governo Federal com saúde são centralizadas no Ministério da Saúde. Para estimar essas despesas, foram consideradas as despesas correntes referentes (i) às Ações e Serviços Públicos de Saúde (ASPS) pelo Ministério da Saúde; e (ii) às ações que não são ASPS, mas que entram na perspectiva SHA, pelo Ministério da Saúde. Os dados foram retirados do sistema Tesouro Gerencial, que possibilita a consulta das informações do Sistema de Administração Financeira e Controle (SIAFI).
+
+Para o cálculo de (i) e (ii), primeiramente, considerou-se o montante de despesas da Função Saúde (Função 10) identificado como despesas correntes (Categoria Econômica Despesa = 3) e com os filtros detalhados no Quadro 1.
+
+A fase de empenho utilizada é a soma de: Restos a Pagar Não Processados Pagos + Restos a Pagar Não processados Pagos
+
+**Quadro 1** - Composição do Gasto Federal do SUS pelo Ministério da Saúde
+
++--------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Despesas ASPS                                                                                                            | Despesas Não ASPS                                                                                                                                                                                                                                 |
++==========================================================================================================================+===================================================================================================================================================================================================================================================+
+| Identificador de Uso para recursos destinados a identificação da aplicação mínima em ações e serviços de saúde (Iduso=6) | Ações programáticas:\                                                                                                                                                                                                                             |
+|                                                                                                                          | • Assistência Médica e Odontológica aos Servidores Civis, Empregados, Militares e seus Dependentes (2004) -- para as Unidades Orçamentárias do Ministério da Saúde (FNS -- 36901), Fiocruz (36201), Funasa (36211), ANS (36213) e Anvisa (36212)\ |
+|                                                                                                                          | • Reestruturação dos Serviços Ambulatoriais e Hospitalares Prestados pelos Hospitais Universitários Federais (Financiamento Partilhado - REHUF) (20G8)\                                                                                           |
+|                                                                                                                          | • Manutenção e Funcionamento do Programa Farmácia Popular do Brasil pelo Sistema de Co-pagamento (20YS)\                                                                                                                                          |
+|                                                                                                                          | • Apoio à Manutenção dos Polos de Academia da Saúde (217U)\                                                                                                                                                                                       |
+|                                                                                                                          | • Estruturação de Academias da Saúde(20YL)\                                                                                                                                                                                                       |
+|                                                                                                                          |                                                                                                                                                                                                                                                   |
+|                                                                                                                          | Unidades orçamentárias:\                                                                                                                                                                                                                          |
+|                                                                                                                          | • ANVISA (36212), com exceção das despesas da Ação 2004\                                                                                                                                                                                          |
+|                                                                                                                          | • ANS (36213), ), com exceção das despesas da Ação 2004\                                                                                                                                                                                          |
+|                                                                                                                          |                                                                                                                                                                                                                                                   |
+|                                                                                                                          | Fontes de recursos detalhada:\                                                                                                                                                                                                                    |
+|                                                                                                                          | • Compensação Financeira pela produção de Petróleo,Gás Natural e Outros (0142000000, 6142000000 e 6342000000)\                                                                                                                                    |
+|                                                                                                                          | • Parcela da Saúde -- Royalties 3ºart. 2ºl. Lei no. 12858/2013 (0142369010, 0342369010 e 6142369010)\                                                                                                                                             |
+|                                                                                                                          |                                                                                                                                                                                                                                                   |
+|                                                                                                                          | Modalidade de aplicação\                                                                                                                                                                                                                          |
+|                                                                                                                          | • Transferência a Instituições Multigovernamentais (70)                                                                                                                                                                                           |
++--------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+```{r}
+SHA_Uniao <- df_final %>% 
+  filter(UO_Orgao_Maximo == "MINISTERIO DA SAUDE") %>% 
+  select(`Ano Lançamento`, Fonte_Recursos_Detalhada_COD, Iduso_COD, Unidade_Orcamentaria_COD, Unidade_Orcamentaria, UG_Executora_COD, UG_Executora, Subfuncao_COD, Acao_Cod, Categoria_Economica_Despesa_COD, Modalidade_Aplicacao_COD ,`DESPESAS PAGAS`, `RESTOS A PAGAR PROCESSADOS PAGOS`, `RESTOS A PAGAR NAO PROCESSADOS PAGOS`) %>% 
+  filter(Categoria_Economica_Despesa_COD %in% "3") %>% 
+  filter(Iduso_COD == 6 | (Acao_Cod == "2004" & Unidade_Orcamentaria_COD %in% c("36901", "36211", "36213", "36212")) | Acao_Cod %in% c("20G8", "20YS", "217U", "20YL") | Modalidade_Aplicacao_COD == "70" | Fonte_Recursos_Detalhada_COD %in% c("0142000000", "6142000000", "6342000000", "0142369010", "0342369010", "6142369010") | (Unidade_Orcamentaria_COD %in% c("36212", "36213") & Acao_Cod != "2004")) %>% 
+  mutate_at(c("DESPESAS PAGAS", "RESTOS A PAGAR PROCESSADOS PAGOS", "RESTOS A PAGAR NAO PROCESSADOS PAGOS"), ~replace_na(.,0)) %>%
+  mutate(resultado = `DESPESAS PAGAS` + `RESTOS A PAGAR PROCESSADOS PAGOS` + `RESTOS A PAGAR NAO PROCESSADOS PAGOS`) %>%
+  select(`Ano Lançamento`, resultado) %>%
+  group_by(`Ano Lançamento`) %>%
+  summarise(resultado_final_uniao_sus = round(sum(resultado),2))
+```
+
+### Calculando a gasto dos entes subnacionais
+
+As despesas aqui consideradas são aquelas realizadas por Estados, Distrito Federal e Municípios. São consideradas as despesas correntes em ASPS[^1] e ao contrário das estimativas para a União, utiliza-se a fase de liquidação das despesas[^2].
+
+[^1]: (Despesas correntes) - (Inativos e Pensionistas) - (Despesas correntes com outras ações e serviços não computados[)]{.underline} = **Despesas correntes em ASPS**
+
+[^2]: A publicação do SHA de 2022, que trata sobre as despesas de 2015-2019, especifica que a fase de liquidação permite aproximação melhor do gasto real de Estados e Municípios
+
+#### Estados
+
+```{r}
+#Importando a base --------------------------
+# Diretório onde estão os arquivos xlsx
+diretorio <- getwd()
+dir_dados <- file.path(diretorio, "dados_estados_munics")
+
+# Listar os arquivos no diretório de dados
+arquivos <- list.files(path = dir_dados, pattern = "estadual", full.names = TRUE)
+arquivo_estadual <- arquivos[1]
+
+# Importar as abas específicas como data frames separados
+suppressMessages(df_2021 <- read_excel(arquivo_estadual, sheet = "2021"))
+suppressMessages(df_2022 <- read_excel(arquivo_estadual, sheet = "2022"))
+
+#Fazendo as modificações necessárias nos DFs--------
+# Definir uma função para renomear as colunas
+modificar_dataframe <- function(df, ano) {
+  # Renomear as primeiras três colunas
+  names(df)[1] <- 'cod_UF'
+  names(df)[2] <- 'UF'
+  names(df)[3] <- 'nome_UF'
+  
+  # Obter os nomes das colunas a partir da quarta coluna
+  vecnames <- names(df)[-(1:3)]
+  
+  # Substituir nomes que contêm números de 1 a 9 por NA
+  vecnames[grepl('[1-9]', vecnames)] <- NA
+  
+  # Preencher valores NA com o último valor não-NA à esquerda
+  vecnames <- na.locf(vecnames)
+  
+  # Obter os nomes originais das colunas para criar vecnames3
+  vecnames2 <- df[1, -(1:3)]
+  vecnames3 <- paste0(vecnames, '_', vecnames2)
+  
+  # Atualizar os nomes das colunas a partir da quarta coluna
+  names(df)[-(1:3)] <- vecnames3
+  
+  # Remover a primeira linha (que foi usada para obter vecnames2)
+  df <- df[-1, ]
+  
+  # Transformar o data frame de formato largo para formato longo
+  melt.data <- melt(df, id.vars = c('cod_UF', 'UF', 'nome_UF'))
+  
+  # Converter a coluna 'variable' para caractere
+  melt.data$variable <- as.character(melt.data$variable)
+  
+  # Separar a coluna 'variable' em 'Fase_Despesa' e 'Natureza'
+  melt.data <- melt.data %>%
+    separate(variable, c('Fase_Despesa', 'Natureza'), '_')
+  
+  # Criar a coluna 'ano'
+  melt.data$ano <- ano
+  
+  # Converter a coluna 'value' para numérico
+  melt.data$value <- as.numeric(melt.data$value)
+  
+  # Remover acentos da coluna 'nome_UF'
+  melt.data$nome_UF <- iconv(melt.data$nome_UF, from = 'UTF-8', to = 'ASCII//TRANSLIT')
+  
+  return(melt.data)
+}
+# Lista de data frames
+dfs <- list(df_2021, df_2022)
+anos <- c("2021", "2022")
+
+# Aplicar a função de renomeação a cada data frame na lista
+dfs_modificados <- mapply(modificar_dataframe, dfs, anos, SIMPLIFY = F)
+
+# Separar os data frames modificados de volta para as variáveis individuais
+df_2021 <- dfs_modificados[[1]]
+df_2022 <- dfs_modificados[[2]]
+
+df_2021_2022 <- bind_rows(df_2021, df_2022)
+
+#Calculando a Despesa total corrente em ASPS dos Estados---------
+resultado_estadual <- df_2021_2022 %>% 
+  filter(Natureza == "Despesas correntes em ASPS") %>% 
+  group_by(ano) %>% 
+  summarise(total_ufs = round(sum(value)/10^9,2))
+```
+
+#### Municípios
+
+```{r}
+#Importando a base --------------------------
+# Diretório onde estão os arquivos xlsx
+diretorio <- getwd()
+dir_dados <- file.path(diretorio, "dados_estados_munics")
+
+# Listar os arquivos no diretório de dados
+arquivos <- list.files(path = dir_dados, pattern = "munic", full.names = TRUE)
+arquivo_munic <- arquivos[1]
+
+# Importar as abas específicas como data frames separados
+suppressMessages(df_2021_munic <- read_excel(arquivo_munic, sheet = "2021"))
+suppressMessages(df_2022_munic <- read_excel(arquivo_munic, sheet = "2022"))
+
+#Fazendo as modificações necessárias nos DFs--------
+# Definir uma função para renomear as colunas
+modificar_dataframe_munic <- function(df, ano) {
+  # Renomear as primeiras três colunas
+  names(df)[1] <- 'cod_munic'
+  names(df)[2] <- 'Munic'
+  names(df)[3] <- 'UF'
+  
+  # Obter os nomes das colunas a partir da quarta coluna
+  vecnames <- names(df)[-(1:3)]
+  
+  # Substituir nomes que contêm números de 1 a 9 por NA
+  vecnames[grepl('[1-9]', vecnames)] <- NA
+  
+  # Preencher valores NA com o último valor não-NA à esquerda
+  vecnames <- na.locf(vecnames)
+  
+  # Obter os nomes originais das colunas para criar vecnames3
+  vecnames2 <- df[1, -(1:3)]
+  vecnames3 <- paste0(vecnames, '_', vecnames2)
+  
+  # Atualizar os nomes das colunas a partir da quarta coluna
+  names(df)[-(1:3)] <- vecnames3
+  
+  # Remover a primeira linha (que foi usada para obter vecnames2)
+  df <- df[-1, ]
+  
+  # Transformar o data frame de formato largo para formato longo
+  melt.data <- melt(df, id.vars = c('cod_munic', 'Munic', 'UF'))
+  
+  # Converter a coluna 'variable' para caractere
+  melt.data$variable <- as.character(melt.data$variable)
+  
+  # Separar a coluna 'variable' em 'Fase_Despesa' e 'Natureza'
+  melt.data <- melt.data %>%
+    separate(variable, c('Fase_Despesa', 'Natureza'), '_')
+  
+  # Criar a coluna 'ano'
+  melt.data$ano <- ano
+  
+  # Converter a coluna 'value' para numérico
+  melt.data$value <- as.numeric(melt.data$value)
+  
+  # Remover acentos da coluna 'nome_UF'
+  melt.data$Munic <- iconv(melt.data$Munic, from = 'UTF-8', to = 'ASCII//TRANSLIT')
+  
+  return(melt.data)
+}
+# Lista de data frames
+dfs_munic <- list(df_2021_munic, df_2022_munic)
+anos <- c("2021", "2022")
+
+# Aplicar a função de renomeação a cada data frame na lista
+dfs_mounics <- mapply(modificar_dataframe_munic, dfs_munic, anos, SIMPLIFY = F)
+
+# Separar os data frames modificados de volta para as variáveis individuais
+df_2021_munic <- dfs_mounics[[1]]
+df_2022_munic <- dfs_mounics[[2]]
+
+df_2021_2022_munic <- bind_rows(df_2021_munic, df_2022_munic)
+
+#Calculando a Despesa total corrente em ASPS dos Estados---------
+resultado_municipal <- df_2021_2022_munic %>% 
+  filter(Natureza == "Despesas correntes em ASPS") %>% 
+  group_by(ano) %>% 
+  summarise(total_munics = round(sum(value)/10^9,2))
+```
+
+## Resultados
+
+A Tabela 2 mostra os valores financiados pela União (Ministério da Saúde e Hospitais Universitários Federais).
+
+```{r}
+SHA_Uniao <- SHA_Uniao %>% 
+  rename("ano" = 'Ano Lançamento') %>% 
+  mutate(resultado_final_uniao_sus = round(resultado_final_uniao_sus/10^9, 2))
+
+SHA_Uniao_MEC_acoes <- SHA_Uniao_MEC_acoes %>% 
+  rename("ano" = 'Ano Lançamento') %>% 
+  mutate(resultado_final_mec = round(resultado_final_mec/10^9,2))
+
+resultado <- cbind(SHA_Uniao, SHA_Uniao_MEC_acoes, resultado_estadual, resultado_municipal)
+
+resultado <- resultado[, c(1, 2, 4, 6, 8)]
+resultado$total <- rowSums(resultado[,2:5])
+
+resultado_renamed <- resultado %>% 
+  rename("Ano" = ano, "MS" = resultado_final_uniao_sus, "MEC" = resultado_final_mec, "Total Estados" = total_ufs, "Total Municípios" = total_munics ,"Total" = total)
+
+kable(resultado_renamed, caption = "Tabela 2 - Estimativas Despesas Sistema Único de Saúde (HF.1.1.1)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F, 
+                position = "center")
+
+```
+
+Dessa forma, sem a realização de ajustes, em 2022, as despesas estimadas do SUS somaram R\$ 397,38 bi, sendo R\$ 149,98 bi provenientes do Ministério da Saúde, R\$ 11,47 bi provenientes dos Hospitais Universitários Federais, além de R\$ 101,52 bi dos Estados e Distrito Federal, e R\$ 134,41 bi dos Municípios.
+
+```{r}
+dados_grafico <- resultado_renamed %>%
+  pivot_longer(cols = c(MS, MEC, `Total Estados`, `Total Municípios`), 
+               names_to = "Parte", 
+               values_to = "Valor") %>%
+  group_by(Ano) %>%
+  mutate(Total_ano = sum(Valor),
+         Share = Valor / Total_ano * 100) %>%
+  ungroup()
+
+# Criar o gráfico
+cores_pastel <- c("MS" = "#FFB3BA", "MEC" = "#FFDFBA", "Total Estadual" = "#FFFFBA", "Total Municípios" = "#BAFFC9")
+
+plot_participacao <- ggplot(dados_grafico, aes(x = factor(Ano), y = Share, fill = Parte)) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(aes(label = sprintf("%.1f%%", Share)), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = "Gráfico 1 - Participação relativa na composição do gasto SUS (HF.1.1.1)",
+       x = "Ano",
+       y = "Participação (%)",
+       fill = "Parte") +
+  scale_fill_manual(values = cores_pastel) +
+  theme_minimal()
+
+print(plot_participacao)
+
+```
+
+Identificou-se um aumento das despesas em relação a 2021 da magnitude de 3,09%, puxada principalmente pelo aumento das despesas dos entes subnacionais, como mostra o Gráfico 1. No caso da União, observa-se uma queda de 12,12%, decorrente principalmente da diminuição dos créditos extraordinários da Covid-19.

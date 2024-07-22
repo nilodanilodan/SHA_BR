@@ -1,0 +1,919 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={HF - SUS},
+  pdfauthor={Danilo Imbimbo, Pedro Buril, Raulino Sabino},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{HF - SUS}
+\author{Danilo Imbimbo, Pedro Buril, Raulino Sabino}
+\date{}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, breakable, interior hidden, sharp corners, enhanced, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+
+\hypertarget{estimativa-de-cuxe1lculo-do-hf.1.1.1-sus}{%
+\section{Estimativa de Cálculo do HF.1.1.1
+(SUS)}\label{estimativa-de-cuxe1lculo-do-hf.1.1.1-sus}}
+
+\hypertarget{introduuxe7uxe3o}{%
+\subsection{Introdução}\label{introduuxe7uxe3o}}
+
+Esse documento tem como objetivo realizar uma estimativa do HF.1.1.1
+(Sistema Único de Saúde) por meio da metodologia do System of Health
+Accounts, com base nos documentos encontrados acerca do SHA brasileiro e
+no que foi possível recuperar da metodologia construída pelo grupo de
+contas.
+
+A HF.1.1.1 se refere ao esquema de financiamento (HF) do Sistema Único
+de Saúde (SUS), sistema universal que possui como público-alvo toda a
+população brasileira. O SUS é o esquema de financiamento mais relevante
+em termos de volume de recursos. Seu financiamento é tripartite, ou
+seja, financiado por União, Estados e Municípios, havendo uma legislação
+que estabelece os investimentos mínimos em saúde por cada esfera de
+governo. Suas receitas provêm majoritariamente por meio de tributos.
+Todavia, além disso, dispõe de transferências de governos estrangeiros,
+doações, bem como outras receitas domésticas.
+
+Dessa forma, consideram-se as despesas SUS aquelas que se referem ao
+atendimento universal, e não a todo gasto público de saúde. Essa
+diferenciação é relevante, pois, existem regimes de financiamento
+públicos não universais, como os gastos com saúde dos servidores civis e
+militares. Assim, se encaixam nessa lógica as despesas efetuadas por
+Ministério da Saúde (União), Estados e Municípios, sendo as despesas da
+União compostas pelas despesas do Ministério da Saúde e do Ministério da
+Educação (MEC) com Hospitais Universitários, que além de centros de
+formação de recursos humanos, prestam assistência ao SUS, sendo centros
+de referência de média e alta complexidade. Esses hospitais são geridos
+pela Empresa Brasileira de Serviços Hospitalares (Ebserh), vinculada ao
+MEC.
+
+Destarte, esta nota técnica apresentará os métodos e técnicos realizados
+para a estimativa das despesas com a HF.1.1.1 para as três esferas de
+governo, somadas as despesas do MEC, que se somam as despesas da União.
+
+\hypertarget{fontes-de-dados}{%
+\subsection{Fontes de Dados}\label{fontes-de-dados}}
+
+Esse trabalho utiliza os dados extraídos do Sistema Integrado de
+Administração Financeira (SIAFI), considerando a execução orçamentária
+do Ministério da Saúde do Ministério da Educação (Hospitais
+Universitários), bem como os dados do Sistema de Informações sobre
+Orçamentos Públicos em Saúde.
+
+O SIAFI é o principal instrumento para registro, acompanhamento e
+controle da execução orçamentária do governo federal, contendo
+informações sobre toda a Administração Pública Direta federal, além de
+autarquias, fundações, empresas públicas e sociedades de economia mista,
+considerando o Orçamento Fical ou Orçamento da Seguridade Social. Por
+outro lado, o SIOPS contempla os registros de receitas e despesas em
+todos os entes federados.
+
+Os dados do SIAFI são extraídos pelo Tesouro Gerencial em relatórios
+.xlsx a partir dos filtros selecionados. No caso, foi extraído um
+relatório a partir da Função 10, que consolida as despesas classificadas
+como Saúde.
+
+No caso do SIOPS, foram solicitados os dados para a equipe responsável,
+a Coordenação de Informações sobre Orçamentos Públicos em Saúde
+(CSIOPS), da Coordenação-Geral de Informações em Economia da Saúde, do
+Departamento de Economia e Desenvolvimento da Saúde (CGES/DESID), de
+acordo com a estrutura regimental do Ministério da Saúde aprovada por
+meio do Decreto Nº 11.798, de 28 de Novembro de 2023. Esses dados foram
+encaminhados também em arquivos .xlsx.
+
+\hypertarget{running-code}{%
+\subsection{Running Code}\label{running-code}}
+
+A partir daqui, serão apresentados os códigos gerados para a realização
+das estimações.
+
+\hypertarget{limpeza-de-ambiente-e-carregamento-dos-pacotes}{%
+\subsubsection{Limpeza de Ambiente e carregamento dos
+pacotes}\label{limpeza-de-ambiente-e-carregamento-dos-pacotes}}
+
+São utilizados sete principais pacotes para essa estimativa: readxl,
+dplyr, tidyr, knitr, kableExtra, zoo, reshape2 e ggplot2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gc}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+          used (Mb) gc trigger (Mb) max used (Mb)
+Ncells  560659 30.0    1279791 68.4   644182 34.5
+Vcells 1003871  7.7    8388608 64.0  1634924 12.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())}
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"Ambiente Limpo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "Ambiente Limpo"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(knitr)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\FunctionTok{library}\NormalTok{(zoo)}
+\FunctionTok{library}\NormalTok{(reshape2)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{importando-a-base-de-dados-do-siafi}{%
+\subsubsection{Importando a base de dados do
+SIAFI}\label{importando-a-base-de-dados-do-siafi}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diretorio }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{lista\_dfs }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+
+\NormalTok{arquivos }\OtherTok{\textless{}{-}} \FunctionTok{list.files}\NormalTok{(diretorio, }\AttributeTok{pattern =} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.xlsx$"}\NormalTok{, }\AttributeTok{full.names =} \ConstantTok{TRUE}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (arquivo }\ControlFlowTok{in}\NormalTok{ arquivos) \{}
+  \CommentTok{\# Ler o arquivo xlsx}
+\NormalTok{  df }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(arquivo)}
+  
+  \CommentTok{\# Determinar a origem do orçamento}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{grepl}\NormalTok{(}\StringTok{"EDUCACAO"}\NormalTok{, }\FunctionTok{basename}\NormalTok{(arquivo), }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)) \{}
+\NormalTok{    origem }\OtherTok{\textless{}{-}} \StringTok{"EDUCACAO"}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{grepl}\NormalTok{(}\StringTok{"SAUDE"}\NormalTok{, }\FunctionTok{basename}\NormalTok{(arquivo), }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)) \{}
+\NormalTok{    origem }\OtherTok{\textless{}{-}} \StringTok{"SAUDE"}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    origem }\OtherTok{\textless{}{-}} \StringTok{"OUTRO"}
+\NormalTok{  \}}
+   
+  \CommentTok{\# Adicionar a coluna ORIGEM\_ORÇAMENTO}
+\NormalTok{  df }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(df, ORIGEM\_ORÇAMENTO }\OtherTok{=}\NormalTok{ origem)}
+  
+  \CommentTok{\# Adicionar o data frame modificado à lista}
+\NormalTok{  lista\_dfs[[}\FunctionTok{length}\NormalTok{(lista\_dfs) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ df}
+\NormalTok{\}}
+
+\CommentTok{\# Concatenar todos os data frames em um único data frame}
+\NormalTok{df\_final }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(lista\_dfs)}
+
+\FunctionTok{rm}\NormalTok{(df, lista\_dfs)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{realizauxe7uxe3o-de-teste-de-verificauxe7uxe3o}{%
+\subsubsection{Realização de teste de
+verificação}\label{realizauxe7uxe3o-de-teste-de-verificauxe7uxe3o}}
+
+Realização de testes na base de dados a fim de verificar se a extração e
+importação estão corretos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{teste\_despesas }\OtherTok{\textless{}{-}}\NormalTok{ df\_final }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{, ORIGEM\_ORÇAMENTO) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{DESPESAS PAGAS}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'Ano Lançamento'. You can override using
+the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(teste\_despesas)}
+
+\FunctionTok{gc}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+          used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  997746 53.3    1847141  98.7  1847141  98.7
+Vcells 8248748 63.0   18972651 144.8 16612682 126.8
+\end{verbatim}
+
+\hypertarget{calculando-o-gasto-mec-com-sauxfade}{%
+\subsubsection{Calculando o gasto MEC com
+saúde}\label{calculando-o-gasto-mec-com-sauxfade}}
+
+Entendendo a necessidade de consolidação das despesas com Hospitais
+Universitários, a execução orçamentária do Ministério da Educação (MEC)
+é essencial. Essas despesas são alocadas no MEC. Dessa forma, essas
+despesas são estimadas da seguinte forma:
+
+Considerou-se o montante de despesas da Função Educação (Função 12)
+identificado como despesas correntes (Categoria Econômica Despesa = 3) e
+realizadas pelas Unidades Gestoras relacionadas aos estabelecimentos de
+saúde das Universidades Federais (Tabela 1), bem como as despesas nas
+ações 20XR e 4086. A ação 20XR se refere ao ``Funcionamento de
+Instituições Federais de Ensino Superios'' e a 4086 ao ``Funcionamento e
+Gestão de Instituições Hospitalares Federais''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{HUs\_ }\OtherTok{\textless{}{-}}\NormalTok{ df\_final }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(UO\_Orgao\_Maximo }\SpecialCharTok{==} \StringTok{"MINISTERIO DA EDUCACAO"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\StringTok{"UG\_Executora\_COD"}\NormalTok{, }\StringTok{"UG\_Executora"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(}\StringTok{"HOSP|COMPLEXO HOSP|EBSERH|MATERNIDADE|DOENCAS DO TORAX DA UFRJ|GINECOLOGIA DA UFRJ|DEOLINDO COUTO DA UFRJ|PSIQUIATRIA DA UFRJ|PUERIC. PED MAT. GESTEIRA DA UFRJ|HUSM"}\NormalTok{, UG\_Executora) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{grepl}\NormalTok{(}\StringTok{"EXERCITO|MILITAR"}\NormalTok{, UG\_Executora)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unique}\NormalTok{()}
+
+\NormalTok{HUs\_renamed }\OtherTok{\textless{}{-}}\NormalTok{ HUs\_ }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\StringTok{\textquotesingle{}Código UF Executora\textquotesingle{}} \OtherTok{=}\NormalTok{ UG\_Executora\_COD, }\StringTok{\textquotesingle{}UG Executora\textquotesingle{}} \OtherTok{=}\NormalTok{ UG\_Executora)}
+
+\FunctionTok{kable}\NormalTok{(HUs\_renamed, }\AttributeTok{caption =} \StringTok{"Tabela 1 {-} Lista de Hospitais Universitários"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{, }\StringTok{"condensed"}\NormalTok{, }\StringTok{"responsive"}\NormalTok{), }
+                \AttributeTok{full\_width =}\NormalTok{ F, }
+                \AttributeTok{position =} \StringTok{"center"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{ll}
+\caption{Tabela 1 - Lista de Hospitais Universitários}\\
+\toprule
+Código UF Executora & UG Executora\\
+\midrule
+153150 & INSTITUTO PUERIC. PED MAT. GESTEIRA DA UFRJ\\
+153152 & HOSPITAL UNIVERSITARIO DA UFRJ\\
+153155 & MATERNIDADE ESCOLA DA UFRJ\\
+150233 & HOSPITAL DE CLINICAS DA UFU\\
+154177 & HOSPITAL UNIVERSITARIO DA FUFSE\\
+\addlinespace
+150247 & COMPLEXO HOSPITALAR E DE SAUDE DA UFBA\\
+153040 & COMPLEXO HOSP UNIVERS PROF EDGARD SANTOS\\
+153057 & HOSPITAL UNIVERSITARIO ANTONIO PEDRO\\
+150231 & HOSPITAL UNIVERSITARIO\\
+153261 & HOSPITAL CLINICAS/UFMG\\
+\addlinespace
+153071 & HOSPITAL UNIVERSITARIO LAURO WANDERLEY-UFPB\\
+153808 & HOSPITAL DE CLINICAS DA UFPR\\
+150432 & SUP.GERAL DO COMPLEXO HOSP.E DE SAUDE DA UFRJ\\
+153147 & INSTITUTO DE GINECOLOGIA DA UFRJ\\
+153148 & INSTITUTO DE NEUROL. DEOLINDO COUTO DA UFRJ\\
+\addlinespace
+153149 & INSTITUTO DE PSIQUIATRIA DA UFRJ\\
+153151 & INSTITUTO DE DOENCAS DO TORAX DA UFRJ\\
+158220 & HOSPITAL ESCOLA SAO FRANCISCO DE ASSIS\\
+153610 & UNIVERSIDADE FEDERAL DE SANTA MARIA - HUSM\\
+158196 & HOSPITAL UNIVERSITARIO ALCIDES CARNEIRO/UFCG\\
+\addlinespace
+154035 & HOSPITAL UNIV. GAFFREE E GUINLE DA UNIRIO\\
+150224 & HOSPITAL UNIVERSITARIO GETULIO VARGAS\\
+154106 & HOSPITAL UNIVERSITARIO DE BRASILIA - HUB\\
+154072 & HOSPITAL UNIVERSITARIO\\
+154070 & HOSPITAL UNIVERSITARIO JULIO MULLER DA FUFMT\\
+\addlinespace
+154145 & HOSPITAL ESCOLA DA UFPEL\\
+150237 & HOSPITAL UNIVERSITARIO DA UFPI\\
+155001 & HOSPITAL DE CLINICAS DE PORTO ALEGRE\\
+150248 & HOSPITAL UNIVERSITARIO (HU/UFGD)\\
+155016 & EBSERH HU-UFGD\\
+\addlinespace
+150229 & HOSPITAL UNIVERSITARIO PROF ALBERTO ANTUNES\\
+150223 & MATERNIDADE CLIMERIO DE OLIVEIRA\\
+150244 & HOSPITAL UNIVERSITARIO WALTER CANTIDIO\\
+150246 & MATERNIDADE ESCOLA ASSIS CHATEAUBRIAND\\
+153047 & HOSPITAL UNIVERSITARIO C. ANTONIO MORAIS/UFES\\
+\addlinespace
+153054 & HOSPITAL DAS CLINICAS DA UFGO\\
+158172 & HOSPITAL UNIVERSITARIO JOAO DE BARROS BARRETO\\
+150220 & HOSPITAL UNIVERSITARIO BETTINA FERRO DE SOUZA\\
+153094 & HOSPITAL DAS CLINICAS - UFPE\\
+150426 & UFRN - COMPLEXO HOSPITALAR DE SAUDE\\
+\addlinespace
+150232 & HOSPITAL UNIVERSITARIO - UFSC\\
+150221 & HOSPITAL DE CLINICAS DA UFTM\\
+155008 & HOSPITAL UNIVERSITARIO DO PIAUI\\
+155007 & EMPRESA BRASILEIRA DE SERVICOS HOSPITALARES\\
+152477 & UNIFESP-HOSP. UNIVERSITARIO\\
+\addlinespace
+158705 & HOSPITAL UNIVERSITARIO JULIO M BANDEIRA MELLO\\
+155009 & HOSPITAL UNIVERSITARIO DE BRASILIA\\
+155010 & HOSPITAL UNIVERSITARIO DA UFMA\\
+155014 & HOSPITAL UNIVERSITARIO ANA BEZERRA\\
+155021 & HOSPITAL DAS CLINICAS DA UFMG\\
+\addlinespace
+155023 & HOSPITAL UNIVERSITARIO LAURO WANDERLEY\\
+155124 & HOSP UNIVERSITARIO MARIA APARECIDA PEDROSSIAN\\
+155125 & HOSPITAL UNIVERSITARIO DE SANTA MARIA\\
+155180 & HOSP DE ENSINO DR WASHINGTON ANTONIO DE BARRO\\
+155905 & HOSPITAL DE DOENCAS TROPICAIS\\
+\addlinespace
+155011 & HOSPITAL DE CLINICAS DA UFTM\\
+155012 & HOSP UNIVERSITARIO CASSIANO ANTONIO DE MORAES\\
+155013 & HOSPITAL UNIVERSITARIO ONOFRE LOPES\\
+155015 & MATERNIDADE ESCOLA JANUARIO CICCO\\
+155017 & HOSPITAL UNIVERSITARIO DA UFS\\
+\addlinespace
+155018 & HOSPITAL UNIVERSITARIO GETULIO VARGAS\\
+155019 & HOSPITAL UNIVERSITARIO JULIO MULLER\\
+155020 & EBSERH COMPLEXO HOSPITALAR DO CEARA\\
+155022 & EBSERH HC-UFPE\\
+155126 & HOSPITAL UNIVERSITARIO PROF ALBERTO ANTUNES\\
+\addlinespace
+155900 & HOSPITAL UNIVERSITARIO DA UFSCAR\\
+155901 & HOSPITAL ESCOLA DA UFPEL\\
+155902 & EBSERH CHC-UFPR\\
+155903 & HOSPITAL UNIVERSITARIO DA UFJF\\
+155904 & HOSPITAL DAS CLINICAS DA UFG\\
+\addlinespace
+155906 & MATERNIDADE CLIMERIO DE OLIVEIRA\\
+155907 & HOSPITAL UNIVERSITARIO PROF. EDGARD SANTOS\\
+155908 & HOSPITAL UNIV. DR. MIGUEL RIET CORREA JR.\\
+155909 & COMPLEXO HOSP UNIVERSIT DA UFPA (HUBFS/HUJBB)\\
+155910 & HOSPITAL UNIVERSITARIO DE LAGARTO\\
+\addlinespace
+155911 & HOSPITAL UNIVERSITARIO GAFFREE E GUINLE\\
+155912 & HOSPITAL UNIVERSITARIO JULIO BANDEIRA\\
+155913 & HOSPITAL UNIVERSITARIO DA UFSC\\
+155914 & HOSPITAL UNIVERSITARIO ALCIDES CARNEIRO\\
+155915 & HOSPITAL UNIVERSITARIO ANTONIO PEDRO\\
+\addlinespace
+156654 & HOSPITAL DE CLINICAS DE UBERLANDIA\\
+154357 & HOSPITAL UNIVERSITARIO MARIA AP. PEDROSSIAM\\
+154716 & HOSPITAL DE ENSINO DR WASHINGTON A. DE BARROS\\
+156956 & HOSPITAL UNIVERSITARIO DA UNIV. FED. DO AMAPA\\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SHA\_Uniao\_MEC\_acoes }\OtherTok{\textless{}{-}}\NormalTok{ df\_final }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(UO\_Orgao\_Maximo }\SpecialCharTok{==} \StringTok{"MINISTERIO DA EDUCACAO"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{,UG\_Executora\_COD, UG\_Executora, Subfuncao\_COD, Acao\_Cod, Categoria\_Economica\_Despesa\_COD, }\StringTok{\textasciigrave{}}\AttributeTok{DESPESAS PAGAS}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR PROCESSADOS PAGOS}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR NAO PROCESSADOS PAGOS}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Categoria\_Economica\_Despesa\_COD }\SpecialCharTok{\%in\%} \StringTok{"3"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(UG\_Executora\_COD }\SpecialCharTok{\%in\%}\NormalTok{ HUs\_}\SpecialCharTok{$}\NormalTok{UG\_Executora\_COD }\SpecialCharTok{|}\NormalTok{ Acao\_Cod }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"20RX"}\NormalTok{, }\StringTok{"4086"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate\_at}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"DESPESAS PAGAS"}\NormalTok{, }\StringTok{"RESTOS A PAGAR PROCESSADOS PAGOS"}\NormalTok{, }\StringTok{"RESTOS A PAGAR NAO PROCESSADOS PAGOS"}\NormalTok{), }\SpecialCharTok{\textasciitilde{}}\FunctionTok{replace\_na}\NormalTok{(.,}\DecValTok{0}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{resultado =} \StringTok{\textasciigrave{}}\AttributeTok{DESPESAS PAGAS}\StringTok{\textasciigrave{}} \SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR PROCESSADOS PAGOS}\StringTok{\textasciigrave{}} \SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR NAO PROCESSADOS PAGOS}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{, resultado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{resultado\_final\_mec =} \FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(resultado),}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculando-a-gasto-do-ministuxe9rio-da-sauxfade}{%
+\subsubsection{Calculando a gasto do Ministério da
+Saúde}\label{calculando-a-gasto-do-ministuxe9rio-da-sauxfade}}
+
+As principais despesas do Governo Federal com saúde são centralizadas no
+Ministério da Saúde. Para estimar essas despesas, foram consideradas as
+despesas correntes referentes (i) às Ações e Serviços Públicos de Saúde
+(ASPS) pelo Ministério da Saúde; e (ii) às ações que não são ASPS, mas
+que entram na perspectiva SHA, pelo Ministério da Saúde. Os dados foram
+retirados do sistema Tesouro Gerencial, que possibilita a consulta das
+informações do Sistema de Administração Financeira e Controle (SIAFI).
+
+Para o cálculo de (i) e (ii), primeiramente, considerou-se o montante de
+despesas da Função Saúde (Função 10) identificado como despesas
+correntes (Categoria Econômica Despesa = 3) e com os filtros detalhados
+no Quadro 1.
+
+A fase de empenho utilizada é a soma de: Restos a Pagar Não Processados
+Pagos + Restos a Pagar Não processados Pagos
+
+\textbf{Quadro 1} - Composição do Gasto Federal do SUS pelo Ministério
+da Saúde
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6649}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+Despesas ASPS
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Despesas Não ASPS
+\end{minipage} \\
+\midrule()
+\endhead
+Identificador de Uso para recursos destinados a identificação da
+aplicação mínima em ações e serviços de saúde (Iduso=6) &
+\begin{minipage}[t]{\linewidth}\raggedright
+Ações programáticas:\\
+• Assistência Médica e Odontológica aos Servidores Civis, Empregados,
+Militares e seus Dependentes (2004) -- para as Unidades Orçamentárias do
+Ministério da Saúde (FNS -- 36901), Fiocruz (36201), Funasa (36211), ANS
+(36213) e Anvisa (36212)\\
+• Reestruturação dos Serviços Ambulatoriais e Hospitalares Prestados
+pelos Hospitais Universitários Federais (Financiamento Partilhado -
+REHUF) (20G8)\\
+• Manutenção e Funcionamento do Programa Farmácia Popular do Brasil pelo
+Sistema de Co-pagamento (20YS)\\
+• Apoio à Manutenção dos Polos de Academia da Saúde (217U)\\
+• Estruturação de Academias da Saúde(20YL)\\
+
+Unidades orçamentárias:\\
+• ANVISA (36212), com exceção das despesas da Ação 2004\\
+• ANS (36213), ), com exceção das despesas da Ação 2004\\
+
+Fontes de recursos detalhada:\\
+• Compensação Financeira pela produção de Petróleo,Gás Natural e Outros
+(0142000000, 6142000000 e 6342000000)\\
+• Parcela da Saúde -- Royalties 3ºart. 2ºl. Lei no. 12858/2013
+(0142369010, 0342369010 e 6142369010)\\
+
+Modalidade de aplicação\\
+• Transferência a Instituições Multigovernamentais (70)\strut
+\end{minipage} \\
+\bottomrule()
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SHA\_Uniao }\OtherTok{\textless{}{-}}\NormalTok{ df\_final }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(UO\_Orgao\_Maximo }\SpecialCharTok{==} \StringTok{"MINISTERIO DA SAUDE"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{, Fonte\_Recursos\_Detalhada\_COD, Iduso\_COD, Unidade\_Orcamentaria\_COD, Unidade\_Orcamentaria, UG\_Executora\_COD, UG\_Executora, Subfuncao\_COD, Acao\_Cod, Categoria\_Economica\_Despesa\_COD, Modalidade\_Aplicacao\_COD ,}\StringTok{\textasciigrave{}}\AttributeTok{DESPESAS PAGAS}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR PROCESSADOS PAGOS}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR NAO PROCESSADOS PAGOS}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Categoria\_Economica\_Despesa\_COD }\SpecialCharTok{\%in\%} \StringTok{"3"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Iduso\_COD }\SpecialCharTok{==} \DecValTok{6} \SpecialCharTok{|}\NormalTok{ (Acao\_Cod }\SpecialCharTok{==} \StringTok{"2004"} \SpecialCharTok{\&}\NormalTok{ Unidade\_Orcamentaria\_COD }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"36901"}\NormalTok{, }\StringTok{"36211"}\NormalTok{, }\StringTok{"36213"}\NormalTok{, }\StringTok{"36212"}\NormalTok{)) }\SpecialCharTok{|}\NormalTok{ Acao\_Cod }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"20G8"}\NormalTok{, }\StringTok{"20YS"}\NormalTok{, }\StringTok{"217U"}\NormalTok{, }\StringTok{"20YL"}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ Modalidade\_Aplicacao\_COD }\SpecialCharTok{==} \StringTok{"70"} \SpecialCharTok{|}\NormalTok{ Fonte\_Recursos\_Detalhada\_COD }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"0142000000"}\NormalTok{, }\StringTok{"6142000000"}\NormalTok{, }\StringTok{"6342000000"}\NormalTok{, }\StringTok{"0142369010"}\NormalTok{, }\StringTok{"0342369010"}\NormalTok{, }\StringTok{"6142369010"}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ (Unidade\_Orcamentaria\_COD }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"36212"}\NormalTok{, }\StringTok{"36213"}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ Acao\_Cod }\SpecialCharTok{!=} \StringTok{"2004"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate\_at}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"DESPESAS PAGAS"}\NormalTok{, }\StringTok{"RESTOS A PAGAR PROCESSADOS PAGOS"}\NormalTok{, }\StringTok{"RESTOS A PAGAR NAO PROCESSADOS PAGOS"}\NormalTok{), }\SpecialCharTok{\textasciitilde{}}\FunctionTok{replace\_na}\NormalTok{(.,}\DecValTok{0}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{resultado =} \StringTok{\textasciigrave{}}\AttributeTok{DESPESAS PAGAS}\StringTok{\textasciigrave{}} \SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR PROCESSADOS PAGOS}\StringTok{\textasciigrave{}} \SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{RESTOS A PAGAR NAO PROCESSADOS PAGOS}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{, resultado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Ano Lançamento}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{resultado\_final\_uniao\_sus =} \FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(resultado),}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculando-a-gasto-dos-entes-subnacionais}{%
+\subsubsection{Calculando a gasto dos entes
+subnacionais}\label{calculando-a-gasto-dos-entes-subnacionais}}
+
+As despesas aqui consideradas são aquelas realizadas por Estados,
+Distrito Federal e Municípios. São consideradas as despesas correntes em
+ASPS\footnote{(Despesas correntes) - (Inativos e Pensionistas) -
+  (Despesas correntes com outras ações e serviços não
+  computados\uline{)}~= \textbf{Despesas correntes em ASPS}} e ao
+contrário das estimativas para a União, utiliza-se a fase de liquidação
+das despesas\footnote{A publicação do SHA de 2022, que trata sobre as
+  despesas de 2015-2019, especifica que a fase de liquidação permite
+  aproximação melhor do gasto real de Estados e Municípios}.
+
+\hypertarget{estados}{%
+\paragraph{Estados}\label{estados}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Importando a base {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Diretório onde estão os arquivos xlsx}
+\NormalTok{diretorio }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{dir\_dados }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(diretorio, }\StringTok{"dados\_estados\_munics"}\NormalTok{)}
+
+\CommentTok{\# Listar os arquivos no diretório de dados}
+\NormalTok{arquivos }\OtherTok{\textless{}{-}} \FunctionTok{list.files}\NormalTok{(}\AttributeTok{path =}\NormalTok{ dir\_dados, }\AttributeTok{pattern =} \StringTok{"estadual"}\NormalTok{, }\AttributeTok{full.names =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{arquivo\_estadual }\OtherTok{\textless{}{-}}\NormalTok{ arquivos[}\DecValTok{1}\NormalTok{]}
+
+\CommentTok{\# Importar as abas específicas como data frames separados}
+\FunctionTok{suppressMessages}\NormalTok{(df\_2021 }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(arquivo\_estadual, }\AttributeTok{sheet =} \StringTok{"2021"}\NormalTok{))}
+\FunctionTok{suppressMessages}\NormalTok{(df\_2022 }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(arquivo\_estadual, }\AttributeTok{sheet =} \StringTok{"2022"}\NormalTok{))}
+
+\CommentTok{\#Fazendo as modificações necessárias nos DFs{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Definir uma função para renomear as colunas}
+\NormalTok{modificar\_dataframe }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(df, ano) \{}
+  \CommentTok{\# Renomear as primeiras três colunas}
+  \FunctionTok{names}\NormalTok{(df)[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}cod\_UF\textquotesingle{}}
+  \FunctionTok{names}\NormalTok{(df)[}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}UF\textquotesingle{}}
+  \FunctionTok{names}\NormalTok{(df)[}\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}nome\_UF\textquotesingle{}}
+  
+  \CommentTok{\# Obter os nomes das colunas a partir da quarta coluna}
+\NormalTok{  vecnames }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(df)[}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)]}
+  
+  \CommentTok{\# Substituir nomes que contêm números de 1 a 9 por NA}
+\NormalTok{  vecnames[}\FunctionTok{grepl}\NormalTok{(}\StringTok{\textquotesingle{}[1{-}9]\textquotesingle{}}\NormalTok{, vecnames)] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+  
+  \CommentTok{\# Preencher valores NA com o último valor não{-}NA à esquerda}
+\NormalTok{  vecnames }\OtherTok{\textless{}{-}} \FunctionTok{na.locf}\NormalTok{(vecnames)}
+  
+  \CommentTok{\# Obter os nomes originais das colunas para criar vecnames3}
+\NormalTok{  vecnames2 }\OtherTok{\textless{}{-}}\NormalTok{ df[}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)]}
+\NormalTok{  vecnames3 }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(vecnames, }\StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{, vecnames2)}
+  
+  \CommentTok{\# Atualizar os nomes das colunas a partir da quarta coluna}
+  \FunctionTok{names}\NormalTok{(df)[}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)] }\OtherTok{\textless{}{-}}\NormalTok{ vecnames3}
+  
+  \CommentTok{\# Remover a primeira linha (que foi usada para obter vecnames2)}
+\NormalTok{  df }\OtherTok{\textless{}{-}}\NormalTok{ df[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, ]}
+  
+  \CommentTok{\# Transformar o data frame de formato largo para formato longo}
+\NormalTok{  melt.data }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(df, }\AttributeTok{id.vars =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cod\_UF\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}UF\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nome\_UF\textquotesingle{}}\NormalTok{))}
+  
+  \CommentTok{\# Converter a coluna \textquotesingle{}variable\textquotesingle{} para caractere}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{variable }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(melt.data}\SpecialCharTok{$}\NormalTok{variable)}
+  
+  \CommentTok{\# Separar a coluna \textquotesingle{}variable\textquotesingle{} em \textquotesingle{}Fase\_Despesa\textquotesingle{} e \textquotesingle{}Natureza\textquotesingle{}}
+\NormalTok{  melt.data }\OtherTok{\textless{}{-}}\NormalTok{ melt.data }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{separate}\NormalTok{(variable, }\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Fase\_Despesa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Natureza\textquotesingle{}}\NormalTok{), }\StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)}
+  
+  \CommentTok{\# Criar a coluna \textquotesingle{}ano\textquotesingle{}}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{ano }\OtherTok{\textless{}{-}}\NormalTok{ ano}
+  
+  \CommentTok{\# Converter a coluna \textquotesingle{}value\textquotesingle{} para numérico}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{value }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(melt.data}\SpecialCharTok{$}\NormalTok{value)}
+  
+  \CommentTok{\# Remover acentos da coluna \textquotesingle{}nome\_UF\textquotesingle{}}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{nome\_UF }\OtherTok{\textless{}{-}} \FunctionTok{iconv}\NormalTok{(melt.data}\SpecialCharTok{$}\NormalTok{nome\_UF, }\AttributeTok{from =} \StringTok{\textquotesingle{}UTF{-}8\textquotesingle{}}\NormalTok{, }\AttributeTok{to =} \StringTok{\textquotesingle{}ASCII//TRANSLIT\textquotesingle{}}\NormalTok{)}
+  
+  \FunctionTok{return}\NormalTok{(melt.data)}
+\NormalTok{\}}
+\CommentTok{\# Lista de data frames}
+\NormalTok{dfs }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(df\_2021, df\_2022)}
+\NormalTok{anos }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"2021"}\NormalTok{, }\StringTok{"2022"}\NormalTok{)}
+
+\CommentTok{\# Aplicar a função de renomeação a cada data frame na lista}
+\NormalTok{dfs\_modificados }\OtherTok{\textless{}{-}} \FunctionTok{mapply}\NormalTok{(modificar\_dataframe, dfs, anos, }\AttributeTok{SIMPLIFY =}\NormalTok{ F)}
+
+\CommentTok{\# Separar os data frames modificados de volta para as variáveis individuais}
+\NormalTok{df\_2021 }\OtherTok{\textless{}{-}}\NormalTok{ dfs\_modificados[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{df\_2022 }\OtherTok{\textless{}{-}}\NormalTok{ dfs\_modificados[[}\DecValTok{2}\NormalTok{]]}
+
+\NormalTok{df\_2021\_2022 }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(df\_2021, df\_2022)}
+
+\CommentTok{\#Calculando a Despesa total corrente em ASPS dos Estados{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{resultado\_estadual }\OtherTok{\textless{}{-}}\NormalTok{ df\_2021\_2022 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Natureza }\SpecialCharTok{==} \StringTok{"Despesas correntes em ASPS"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(ano) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{total\_ufs =} \FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(value)}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{municuxedpios}{%
+\paragraph{Municípios}\label{municuxedpios}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Importando a base {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Diretório onde estão os arquivos xlsx}
+\NormalTok{diretorio }\OtherTok{\textless{}{-}} \FunctionTok{getwd}\NormalTok{()}
+\NormalTok{dir\_dados }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(diretorio, }\StringTok{"dados\_estados\_munics"}\NormalTok{)}
+
+\CommentTok{\# Listar os arquivos no diretório de dados}
+\NormalTok{arquivos }\OtherTok{\textless{}{-}} \FunctionTok{list.files}\NormalTok{(}\AttributeTok{path =}\NormalTok{ dir\_dados, }\AttributeTok{pattern =} \StringTok{"munic"}\NormalTok{, }\AttributeTok{full.names =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{arquivo\_munic }\OtherTok{\textless{}{-}}\NormalTok{ arquivos[}\DecValTok{1}\NormalTok{]}
+
+\CommentTok{\# Importar as abas específicas como data frames separados}
+\FunctionTok{suppressMessages}\NormalTok{(df\_2021\_munic }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(arquivo\_munic, }\AttributeTok{sheet =} \StringTok{"2021"}\NormalTok{))}
+\FunctionTok{suppressMessages}\NormalTok{(df\_2022\_munic }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(arquivo\_munic, }\AttributeTok{sheet =} \StringTok{"2022"}\NormalTok{))}
+
+\CommentTok{\#Fazendo as modificações necessárias nos DFs{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Definir uma função para renomear as colunas}
+\NormalTok{modificar\_dataframe\_munic }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(df, ano) \{}
+  \CommentTok{\# Renomear as primeiras três colunas}
+  \FunctionTok{names}\NormalTok{(df)[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}cod\_munic\textquotesingle{}}
+  \FunctionTok{names}\NormalTok{(df)[}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}Munic\textquotesingle{}}
+  \FunctionTok{names}\NormalTok{(df)[}\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}UF\textquotesingle{}}
+  
+  \CommentTok{\# Obter os nomes das colunas a partir da quarta coluna}
+\NormalTok{  vecnames }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(df)[}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)]}
+  
+  \CommentTok{\# Substituir nomes que contêm números de 1 a 9 por NA}
+\NormalTok{  vecnames[}\FunctionTok{grepl}\NormalTok{(}\StringTok{\textquotesingle{}[1{-}9]\textquotesingle{}}\NormalTok{, vecnames)] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+  
+  \CommentTok{\# Preencher valores NA com o último valor não{-}NA à esquerda}
+\NormalTok{  vecnames }\OtherTok{\textless{}{-}} \FunctionTok{na.locf}\NormalTok{(vecnames)}
+  
+  \CommentTok{\# Obter os nomes originais das colunas para criar vecnames3}
+\NormalTok{  vecnames2 }\OtherTok{\textless{}{-}}\NormalTok{ df[}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)]}
+\NormalTok{  vecnames3 }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(vecnames, }\StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{, vecnames2)}
+  
+  \CommentTok{\# Atualizar os nomes das colunas a partir da quarta coluna}
+  \FunctionTok{names}\NormalTok{(df)[}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)] }\OtherTok{\textless{}{-}}\NormalTok{ vecnames3}
+  
+  \CommentTok{\# Remover a primeira linha (que foi usada para obter vecnames2)}
+\NormalTok{  df }\OtherTok{\textless{}{-}}\NormalTok{ df[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, ]}
+  
+  \CommentTok{\# Transformar o data frame de formato largo para formato longo}
+\NormalTok{  melt.data }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(df, }\AttributeTok{id.vars =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cod\_munic\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Munic\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}UF\textquotesingle{}}\NormalTok{))}
+  
+  \CommentTok{\# Converter a coluna \textquotesingle{}variable\textquotesingle{} para caractere}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{variable }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(melt.data}\SpecialCharTok{$}\NormalTok{variable)}
+  
+  \CommentTok{\# Separar a coluna \textquotesingle{}variable\textquotesingle{} em \textquotesingle{}Fase\_Despesa\textquotesingle{} e \textquotesingle{}Natureza\textquotesingle{}}
+\NormalTok{  melt.data }\OtherTok{\textless{}{-}}\NormalTok{ melt.data }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{separate}\NormalTok{(variable, }\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Fase\_Despesa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Natureza\textquotesingle{}}\NormalTok{), }\StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)}
+  
+  \CommentTok{\# Criar a coluna \textquotesingle{}ano\textquotesingle{}}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{ano }\OtherTok{\textless{}{-}}\NormalTok{ ano}
+  
+  \CommentTok{\# Converter a coluna \textquotesingle{}value\textquotesingle{} para numérico}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{value }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(melt.data}\SpecialCharTok{$}\NormalTok{value)}
+  
+  \CommentTok{\# Remover acentos da coluna \textquotesingle{}nome\_UF\textquotesingle{}}
+\NormalTok{  melt.data}\SpecialCharTok{$}\NormalTok{Munic }\OtherTok{\textless{}{-}} \FunctionTok{iconv}\NormalTok{(melt.data}\SpecialCharTok{$}\NormalTok{Munic, }\AttributeTok{from =} \StringTok{\textquotesingle{}UTF{-}8\textquotesingle{}}\NormalTok{, }\AttributeTok{to =} \StringTok{\textquotesingle{}ASCII//TRANSLIT\textquotesingle{}}\NormalTok{)}
+  
+  \FunctionTok{return}\NormalTok{(melt.data)}
+\NormalTok{\}}
+\CommentTok{\# Lista de data frames}
+\NormalTok{dfs\_munic }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(df\_2021\_munic, df\_2022\_munic)}
+\NormalTok{anos }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"2021"}\NormalTok{, }\StringTok{"2022"}\NormalTok{)}
+
+\CommentTok{\# Aplicar a função de renomeação a cada data frame na lista}
+\NormalTok{dfs\_mounics }\OtherTok{\textless{}{-}} \FunctionTok{mapply}\NormalTok{(modificar\_dataframe\_munic, dfs\_munic, anos, }\AttributeTok{SIMPLIFY =}\NormalTok{ F)}
+
+\CommentTok{\# Separar os data frames modificados de volta para as variáveis individuais}
+\NormalTok{df\_2021\_munic }\OtherTok{\textless{}{-}}\NormalTok{ dfs\_mounics[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{df\_2022\_munic }\OtherTok{\textless{}{-}}\NormalTok{ dfs\_mounics[[}\DecValTok{2}\NormalTok{]]}
+
+\NormalTok{df\_2021\_2022\_munic }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(df\_2021\_munic, df\_2022\_munic)}
+
+\CommentTok{\#Calculando a Despesa total corrente em ASPS dos Estados{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{resultado\_municipal }\OtherTok{\textless{}{-}}\NormalTok{ df\_2021\_2022\_munic }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Natureza }\SpecialCharTok{==} \StringTok{"Despesas correntes em ASPS"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(ano) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{total\_munics =} \FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(value)}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{resultados}{%
+\subsection{Resultados}\label{resultados}}
+
+A Tabela 2 mostra os valores financiados pela União (Ministério da Saúde
+e Hospitais Universitários Federais).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SHA\_Uniao }\OtherTok{\textless{}{-}}\NormalTok{ SHA\_Uniao }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\StringTok{"ano"} \OtherTok{=} \StringTok{\textquotesingle{}Ano Lançamento\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{resultado\_final\_uniao\_sus =} \FunctionTok{round}\NormalTok{(resultado\_final\_uniao\_sus}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{9}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+
+\NormalTok{SHA\_Uniao\_MEC\_acoes }\OtherTok{\textless{}{-}}\NormalTok{ SHA\_Uniao\_MEC\_acoes }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\StringTok{"ano"} \OtherTok{=} \StringTok{\textquotesingle{}Ano Lançamento\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{resultado\_final\_mec =} \FunctionTok{round}\NormalTok{(resultado\_final\_mec}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+
+\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(SHA\_Uniao, SHA\_Uniao\_MEC\_acoes, resultado\_estadual, resultado\_municipal)}
+
+\NormalTok{resultado }\OtherTok{\textless{}{-}}\NormalTok{ resultado[, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{)]}
+\NormalTok{resultado}\SpecialCharTok{$}\NormalTok{total }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(resultado[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{5}\NormalTok{])}
+
+\NormalTok{resultado\_renamed }\OtherTok{\textless{}{-}}\NormalTok{ resultado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\StringTok{"Ano"} \OtherTok{=}\NormalTok{ ano, }\StringTok{"MS"} \OtherTok{=}\NormalTok{ resultado\_final\_uniao\_sus, }\StringTok{"MEC"} \OtherTok{=}\NormalTok{ resultado\_final\_mec, }\StringTok{"Total Estados"} \OtherTok{=}\NormalTok{ total\_ufs, }\StringTok{"Total Municípios"} \OtherTok{=}\NormalTok{ total\_munics ,}\StringTok{"Total"} \OtherTok{=}\NormalTok{ total)}
+
+\FunctionTok{kable}\NormalTok{(resultado\_renamed, }\AttributeTok{caption =} \StringTok{"Tabela 2 {-} Estimativas Despesas Sistema Único de Saúde (HF.1.1.1)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{, }\StringTok{"condensed"}\NormalTok{, }\StringTok{"responsive"}\NormalTok{), }
+                \AttributeTok{full\_width =}\NormalTok{ F, }
+                \AttributeTok{position =} \StringTok{"center"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{lrrrrr}
+\caption{Tabela 2 - Estimativas Despesas Sistema Único de Saúde (HF.1.1.1)}\\
+\toprule
+Ano & MS & MEC & Total Estados & Total Municípios & Total\\
+\midrule
+2021 & 170.68 & 11.52 & 88.86 & 114.39 & 385.45\\
+2022 & 149.98 & 11.47 & 101.52 & 134.41 & 397.38\\
+\bottomrule
+\end{longtable}
+
+Dessa forma, sem a realização de ajustes, em 2022, as despesas estimadas
+do SUS somaram R\$ 397,38 bi, sendo R\$ 149,98 bi provenientes do
+Ministério da Saúde, R\$ 11,47 bi provenientes dos Hospitais
+Universitários Federais, além de R\$ 101,52 bi dos Estados e Distrito
+Federal, e R\$ 134,41 bi dos Municípios.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_grafico }\OtherTok{\textless{}{-}}\NormalTok{ resultado\_renamed }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(MS, MEC, }\StringTok{\textasciigrave{}}\AttributeTok{Total Estados}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Total Municípios}\StringTok{\textasciigrave{}}\NormalTok{), }
+               \AttributeTok{names\_to =} \StringTok{"Parte"}\NormalTok{, }
+               \AttributeTok{values\_to =} \StringTok{"Valor"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Ano) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Total\_ano =} \FunctionTok{sum}\NormalTok{(Valor),}
+         \AttributeTok{Share =}\NormalTok{ Valor }\SpecialCharTok{/}\NormalTok{ Total\_ano }\SpecialCharTok{*} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{()}
+
+\CommentTok{\# Criar o gráfico}
+\NormalTok{cores\_pastel }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"MS"} \OtherTok{=} \StringTok{"\#FFB3BA"}\NormalTok{, }\StringTok{"MEC"} \OtherTok{=} \StringTok{"\#FFDFBA"}\NormalTok{, }\StringTok{"Total Estadual"} \OtherTok{=} \StringTok{"\#FFFFBA"}\NormalTok{, }\StringTok{"Total Municípios"} \OtherTok{=} \StringTok{"\#BAFFC9"}\NormalTok{)}
+
+\NormalTok{plot\_participacao }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dados\_grafico, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(Ano), }\AttributeTok{y =}\NormalTok{ Share, }\AttributeTok{fill =}\NormalTok{ Parte)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{position =} \StringTok{"stack"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%.1f\%\%"}\NormalTok{, Share)), }
+            \AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{), }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gráfico 1 {-} Participação relativa na composição do gasto SUS (HF.1.1.1)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Ano"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Participação (\%)"}\NormalTok{,}
+       \AttributeTok{fill =} \StringTok{"Parte"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cores\_pastel) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+
+\FunctionTok{print}\NormalTok{(plot\_participacao)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{relatorio_hf_sus_files/figure-pdf/unnamed-chunk-10-1.pdf}
+
+}
+
+\end{figure}
+
+Identificou-se um aumento das despesas em relação a 2021 da magnitude de
+3,09\%, puxada principalmente pelo aumento das despesas dos entes
+subnacionais, como mostra o Gráfico 1. No caso da União, observa-se uma
+queda de 12,12\%, decorrente principalmente da diminuição dos créditos
+extraordinários da Covid-19.
+
+
+
+\end{document}

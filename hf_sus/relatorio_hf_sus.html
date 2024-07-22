@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Danilo Imbimbo, Pedro Buril, Raulino Sabino - NCS">
+
+<title>HF - SUS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="relatorio_hf_sus_files/libs/clipboard/clipboard.min.js"></script>
+<script src="relatorio_hf_sus_files/libs/quarto-html/quarto.js"></script>
+<script src="relatorio_hf_sus_files/libs/quarto-html/popper.min.js"></script>
+<script src="relatorio_hf_sus_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="relatorio_hf_sus_files/libs/quarto-html/anchor.min.js"></script>
+<link href="relatorio_hf_sus_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="relatorio_hf_sus_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="relatorio_hf_sus_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="relatorio_hf_sus_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="relatorio_hf_sus_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="relatorio_hf_sus_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="relatorio_hf_sus_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">HF - SUS</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Danilo Imbimbo, Pedro Buril, Raulino Sabino - NCS </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="estimativa-de-cálculo-do-hf.1.1.1-sus" class="level1">
+<h1>Estimativa de Cálculo do HF.1.1.1 (SUS)</h1>
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Esse documento tem como objetivo realizar uma estimativa do HF.1.1.1 (Sistema Único de Saúde) por meio da metodologia do System of Health Accounts, com base nos documentos encontrados acerca do SHA brasileiro e no que foi possível recuperar da metodologia construída pelo grupo de contas.</p>
+<p>A HF.1.1.1 se refere ao esquema de financiamento (HF) do Sistema Único de Saúde (SUS), sistema universal que possui como público-alvo toda a população brasileira. O SUS é o esquema de financiamento mais relevante em termos de volume de recursos. Seu financiamento é tripartite, ou seja, financiado por União, Estados e Municípios, havendo uma legislação que estabelece os investimentos mínimos em saúde por cada esfera de governo. Suas receitas provêm majoritariamente por meio de tributos. Todavia, além disso, dispõe de transferências de governos estrangeiros, doações, bem como de outras receitas domésticas.</p>
+<p>Dessa forma, consideram-se as despesas SUS aquelas que se referem ao atendimento universal, e não a todo gasto público em saúde. Essa diferenciação é relevante, pois, existem regimes de financiamento públicos não universais, como os gastos com saúde dos servidores civis e militares. Assim, se encaixam nessa lógica as despesas efetuadas por Ministério da Saúde (União), Estados e Municípios, sendo as despesas da União compostas pelas despesas do Ministério da Saúde e do Ministério da Educação (MEC) com Hospitais Universitários, que além de centros de formação de recursos humanos, prestam assistência ao SUS, sendo centros de referência de média e alta complexidade. Esses hospitais são geridos pela Empresa Brasileira de Serviços Hospitalares (Ebserh), vinculada ao MEC.</p>
+<p>Destarte, esta nota técnica apresentará os métodos e técnicas realizadas para a estimativa das despesas com a HF.1.1.1 para as três esferas de governo, somadas as despesas do MEC, que se somam as despesas da União.</p>
+</section>
+<section id="fontes-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="fontes-de-dados">Fontes de Dados</h2>
+<p>Esse trabalho utiliza os dados extraídos do Sistema Integrado de Administração Financeira (SIAFI), considerando a execução orçamentária do Ministério da Saúde do Ministério da Educação (Hospitais Universitários), bem como os dados do Sistema de Informações sobre Orçamentos Públicos em Saúde.</p>
+<p>O SIAFI é o principal instrumento para registro, acompanhamento e controle da execução orçamentária do governo federal, contendo informações sobre toda a Administração Pública Direta federal, além de autarquias, fundações, empresas públicas e sociedades de economia mista, considerando o Orçamento Fical ou Orçamento da Seguridade Social. Por outro lado, o SIOPS contempla os registros de receitas e despesas em todos os entes federados.</p>
+<p>Os dados do SIAFI são extraídos pelo Tesouro Gerencial em relatórios .xlsx a partir dos filtros selecionados. No caso, foi extraído um relatório a partir da Função 10, que consolida as despesas classificadas como Saúde.</p>
+<p>No caso do SIOPS, foram solicitados os dados para a equipe responsável, a Coordenação de Informações sobre Orçamentos Públicos em Saúde (CSIOPS), da Coordenação-Geral de Informações em Economia da Saúde, do Departamento de Economia e Desenvolvimento da Saúde (CGES/DESID), de acordo com a estrutura regimental do Ministério da Saúde aprovada por meio do Decreto Nº 11.798, de 28 de Novembro de 2023. Esses dados foram encaminhados também em arquivos .xlsx.</p>
+</section>
+<section id="running-code" class="level2">
+<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
+<p>A partir daqui, serão apresentados os códigos gerados para a realização das estimações.</p>
+<section id="limpeza-de-ambiente-e-carregamento-dos-pacotes" class="level3">
+<h3 class="anchored" data-anchor-id="limpeza-de-ambiente-e-carregamento-dos-pacotes">Limpeza de Ambiente e carregamento dos pacotes</h3>
+<p>São utilizados sete principais pacotes para essa estimativa: readxl, dplyr, tidyr, knitr, kableExtra, zoo, reshape2 e ggplot2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 559481 29.9    1276425 68.2   644182 34.5
+Vcells 998427  7.7    8388608 64.0  1635094 12.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Ambiente Limpo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Ambiente Limpo"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="importando-a-base-de-dados-do-siafi" class="level3">
+<h3 class="anchored" data-anchor-id="importando-a-base-de-dados-do-siafi">Importando a base de dados do SIAFI</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diretorio <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lista_dfs <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>arquivos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(diretorio, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.xlsx$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (arquivo <span class="cf">in</span> arquivos) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ler o arquivo xlsx</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(arquivo)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Determinar a origem do orçamento</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"EDUCACAO"</span>, <span class="fu">basename</span>(arquivo), <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    origem <span class="ot">&lt;-</span> <span class="st">"EDUCACAO"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"SAUDE"</span>, <span class="fu">basename</span>(arquivo), <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    origem <span class="ot">&lt;-</span> <span class="st">"SAUDE"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    origem <span class="ot">&lt;-</span> <span class="st">"OUTRO"</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adicionar a coluna ORIGEM_ORÇAMENTO</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df, ORIGEM_ORÇAMENTO <span class="ot">=</span> origem)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adicionar o data frame modificado à lista</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  lista_dfs[[<span class="fu">length</span>(lista_dfs) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> df</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenar todos os data frames em um único data frame</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>df_final <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(lista_dfs)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(df, lista_dfs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="realização-de-teste-de-verificação" class="level3">
+<h3 class="anchored" data-anchor-id="realização-de-teste-de-verificação">Realização de teste de verificação</h3>
+<p>Realização de testes na base de dados a fim de verificar se a extração e importação estão corretos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>teste_despesas <span class="ot">&lt;-</span> df_final <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>, ORIGEM_ORÇAMENTO) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">sum</span>(<span class="st">`</span><span class="at">DESPESAS PAGAS</span><span class="st">`</span>, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Ano Lançamento'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(teste_despesas)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  996141 53.2    1844230  98.5  1844230  98.5
+Vcells 8242335 62.9   18964944 144.7 16606260 126.7</code></pre>
+</div>
+</div>
+</section>
+<section id="calculando-o-gasto-mec-com-saúde" class="level3">
+<h3 class="anchored" data-anchor-id="calculando-o-gasto-mec-com-saúde">Calculando o gasto MEC com saúde</h3>
+<p>Entendendo a necessidade de consolidação das despesas com Hospitais Universitários, a execução orçamentária do Ministério da Educação (MEC) é essencial. Essas despesas são alocadas no MEC. Dessa forma, essas despesas são estimadas da seguinte forma:</p>
+<p>Considerou-se o montante de despesas da Função Educação (Função 12) identificado como despesas correntes (Categoria Econômica Despesa = 3) e realizadas pelas Unidades Gestoras relacionadas aos estabelecimentos de saúde das Universidades Federais (Tabela 1), bem como as despesas nas ações 20XR e 4086. A ação 20XR se refere ao “Funcionamento de Instituições Federais de Ensino Superior” e a 4086 ao “Funcionamento e Gestão de Instituições Hospitalares Federais”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>HUs_ <span class="ot">&lt;-</span> df_final <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(UO_Orgao_Maximo <span class="sc">==</span> <span class="st">"MINISTERIO DA EDUCACAO"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"UG_Executora_COD"</span>, <span class="st">"UG_Executora"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"HOSP|COMPLEXO HOSP|EBSERH|MATERNIDADE|DOENCAS DO TORAX DA UFRJ|GINECOLOGIA DA UFRJ|DEOLINDO COUTO DA UFRJ|PSIQUIATRIA DA UFRJ|PUERIC. PED MAT. GESTEIRA DA UFRJ|HUSM"</span>, UG_Executora) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"EXERCITO|MILITAR"</span>, UG_Executora)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>HUs_renamed <span class="ot">&lt;-</span> HUs_ <span class="sc">%&gt;%</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'Código UF Executora'</span> <span class="ot">=</span> UG_Executora_COD, <span class="st">'UG Executora'</span> <span class="ot">=</span> UG_Executora)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(HUs_renamed, <span class="at">caption =</span> <span class="st">"Tabela 1 - Lista de Hospitais Universitários"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> F, </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">"center"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Tabela 1 - Lista de Hospitais Universitários</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Código UF Executora </th>
+   <th style="text-align:left;"> UG Executora </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 153150 </td>
+   <td style="text-align:left;"> INSTITUTO PUERIC. PED MAT. GESTEIRA DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153152 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153155 </td>
+   <td style="text-align:left;"> MATERNIDADE ESCOLA DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150233 </td>
+   <td style="text-align:left;"> HOSPITAL DE CLINICAS DA UFU </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154177 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA FUFSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150247 </td>
+   <td style="text-align:left;"> COMPLEXO HOSPITALAR E DE SAUDE DA UFBA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153040 </td>
+   <td style="text-align:left;"> COMPLEXO HOSP UNIVERS PROF EDGARD SANTOS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153057 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO ANTONIO PEDRO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150231 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153261 </td>
+   <td style="text-align:left;"> HOSPITAL CLINICAS/UFMG </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153071 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO LAURO WANDERLEY-UFPB </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153808 </td>
+   <td style="text-align:left;"> HOSPITAL DE CLINICAS DA UFPR </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150432 </td>
+   <td style="text-align:left;"> SUP.GERAL DO COMPLEXO HOSP.E DE SAUDE DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153147 </td>
+   <td style="text-align:left;"> INSTITUTO DE GINECOLOGIA DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153148 </td>
+   <td style="text-align:left;"> INSTITUTO DE NEUROL. DEOLINDO COUTO DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153149 </td>
+   <td style="text-align:left;"> INSTITUTO DE PSIQUIATRIA DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153151 </td>
+   <td style="text-align:left;"> INSTITUTO DE DOENCAS DO TORAX DA UFRJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 158220 </td>
+   <td style="text-align:left;"> HOSPITAL ESCOLA SAO FRANCISCO DE ASSIS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153610 </td>
+   <td style="text-align:left;"> UNIVERSIDADE FEDERAL DE SANTA MARIA - HUSM </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 158196 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO ALCIDES CARNEIRO/UFCG </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154035 </td>
+   <td style="text-align:left;"> HOSPITAL UNIV. GAFFREE E GUINLE DA UNIRIO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150224 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO GETULIO VARGAS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154106 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DE BRASILIA - HUB </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154072 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154070 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO JULIO MULLER DA FUFMT </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154145 </td>
+   <td style="text-align:left;"> HOSPITAL ESCOLA DA UFPEL </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150237 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFPI </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155001 </td>
+   <td style="text-align:left;"> HOSPITAL DE CLINICAS DE PORTO ALEGRE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150248 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO (HU/UFGD) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155016 </td>
+   <td style="text-align:left;"> EBSERH HU-UFGD </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150229 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO PROF ALBERTO ANTUNES </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150223 </td>
+   <td style="text-align:left;"> MATERNIDADE CLIMERIO DE OLIVEIRA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150244 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO WALTER CANTIDIO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150246 </td>
+   <td style="text-align:left;"> MATERNIDADE ESCOLA ASSIS CHATEAUBRIAND </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153047 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO C. ANTONIO MORAIS/UFES </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153054 </td>
+   <td style="text-align:left;"> HOSPITAL DAS CLINICAS DA UFGO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 158172 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO JOAO DE BARROS BARRETO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150220 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO BETTINA FERRO DE SOUZA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 153094 </td>
+   <td style="text-align:left;"> HOSPITAL DAS CLINICAS - UFPE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150426 </td>
+   <td style="text-align:left;"> UFRN - COMPLEXO HOSPITALAR DE SAUDE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150232 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO - UFSC </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 150221 </td>
+   <td style="text-align:left;"> HOSPITAL DE CLINICAS DA UFTM </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155008 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DO PIAUI </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155007 </td>
+   <td style="text-align:left;"> EMPRESA BRASILEIRA DE SERVICOS HOSPITALARES </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 152477 </td>
+   <td style="text-align:left;"> UNIFESP-HOSP. UNIVERSITARIO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 158705 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO JULIO M BANDEIRA MELLO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155009 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DE BRASILIA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155010 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFMA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155014 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO ANA BEZERRA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155021 </td>
+   <td style="text-align:left;"> HOSPITAL DAS CLINICAS DA UFMG </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155023 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO LAURO WANDERLEY </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155124 </td>
+   <td style="text-align:left;"> HOSP UNIVERSITARIO MARIA APARECIDA PEDROSSIAN </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155125 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DE SANTA MARIA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155180 </td>
+   <td style="text-align:left;"> HOSP DE ENSINO DR WASHINGTON ANTONIO DE BARRO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155905 </td>
+   <td style="text-align:left;"> HOSPITAL DE DOENCAS TROPICAIS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155011 </td>
+   <td style="text-align:left;"> HOSPITAL DE CLINICAS DA UFTM </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155012 </td>
+   <td style="text-align:left;"> HOSP UNIVERSITARIO CASSIANO ANTONIO DE MORAES </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155013 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO ONOFRE LOPES </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155015 </td>
+   <td style="text-align:left;"> MATERNIDADE ESCOLA JANUARIO CICCO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155017 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155018 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO GETULIO VARGAS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155019 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO JULIO MULLER </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155020 </td>
+   <td style="text-align:left;"> EBSERH COMPLEXO HOSPITALAR DO CEARA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155022 </td>
+   <td style="text-align:left;"> EBSERH HC-UFPE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155126 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO PROF ALBERTO ANTUNES </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155900 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFSCAR </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155901 </td>
+   <td style="text-align:left;"> HOSPITAL ESCOLA DA UFPEL </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155902 </td>
+   <td style="text-align:left;"> EBSERH CHC-UFPR </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155903 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFJF </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155904 </td>
+   <td style="text-align:left;"> HOSPITAL DAS CLINICAS DA UFG </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155906 </td>
+   <td style="text-align:left;"> MATERNIDADE CLIMERIO DE OLIVEIRA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155907 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO PROF. EDGARD SANTOS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155908 </td>
+   <td style="text-align:left;"> HOSPITAL UNIV. DR. MIGUEL RIET CORREA JR. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155909 </td>
+   <td style="text-align:left;"> COMPLEXO HOSP UNIVERSIT DA UFPA (HUBFS/HUJBB) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155910 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DE LAGARTO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155911 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO GAFFREE E GUINLE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155912 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO JULIO BANDEIRA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155913 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UFSC </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155914 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO ALCIDES CARNEIRO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 155915 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO ANTONIO PEDRO </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 156654 </td>
+   <td style="text-align:left;"> HOSPITAL DE CLINICAS DE UBERLANDIA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154357 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO MARIA AP. PEDROSSIAM </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 154716 </td>
+   <td style="text-align:left;"> HOSPITAL DE ENSINO DR WASHINGTON A. DE BARROS </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 156956 </td>
+   <td style="text-align:left;"> HOSPITAL UNIVERSITARIO DA UNIV. FED. DO AMAPA </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>SHA_Uniao_MEC_acoes <span class="ot">&lt;-</span> df_final <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(UO_Orgao_Maximo <span class="sc">==</span> <span class="st">"MINISTERIO DA EDUCACAO"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>,UG_Executora_COD, UG_Executora, Subfuncao_COD, Acao_Cod, Categoria_Economica_Despesa_COD, <span class="st">`</span><span class="at">DESPESAS PAGAS</span><span class="st">`</span>, <span class="st">`</span><span class="at">RESTOS A PAGAR PROCESSADOS PAGOS</span><span class="st">`</span>, <span class="st">`</span><span class="at">RESTOS A PAGAR NAO PROCESSADOS PAGOS</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Categoria_Economica_Despesa_COD <span class="sc">%in%</span> <span class="st">"3"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(UG_Executora_COD <span class="sc">%in%</span> HUs_<span class="sc">$</span>UG_Executora_COD <span class="sc">|</span> Acao_Cod <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"20RX"</span>, <span class="st">"4086"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"DESPESAS PAGAS"</span>, <span class="st">"RESTOS A PAGAR PROCESSADOS PAGOS"</span>, <span class="st">"RESTOS A PAGAR NAO PROCESSADOS PAGOS"</span>), <span class="sc">~</span><span class="fu">replace_na</span>(.,<span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">resultado =</span> <span class="st">`</span><span class="at">DESPESAS PAGAS</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">RESTOS A PAGAR PROCESSADOS PAGOS</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">RESTOS A PAGAR NAO PROCESSADOS PAGOS</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>, resultado) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">resultado_final_mec =</span> <span class="fu">round</span>(<span class="fu">sum</span>(resultado),<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculando-a-gasto-do-ministério-da-saúde" class="level3">
+<h3 class="anchored" data-anchor-id="calculando-a-gasto-do-ministério-da-saúde">Calculando a gasto do Ministério da Saúde</h3>
+<p>As principais despesas do Governo Federal com saúde são centralizadas no Ministério da Saúde. Para estimar essas despesas, foram consideradas as despesas correntes referentes (i) às Ações e Serviços Públicos de Saúde (ASPS) pelo Ministério da Saúde; e (ii) às ações que não são ASPS, mas que entram na perspectiva SHA, pelo Ministério da Saúde. Os dados foram retirados do sistema Tesouro Gerencial, que possibilita a consulta das informações do Sistema de Administração Financeira e Controle (SIAFI).</p>
+<p>Para o cálculo de (i) e (ii), primeiramente, considerou-se o montante de despesas da Função Saúde (Função 10) identificado como despesas correntes (Categoria Econômica Despesa = 3) e com os filtros detalhados no Quadro 1.</p>
+<p>A fase de empenho utilizada é a soma de: Restos a Pagar Não Processados Pagos + Restos a Pagar Não processados Pagos</p>
+<p><strong>Quadro 1</strong> - Composição do Gasto Federal do SUS pelo Ministério da Saúde</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Despesas ASPS</th>
+<th>Despesas Não ASPS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identificador de Uso para recursos destinados a identificação da aplicação mínima em ações e serviços de saúde (Iduso=6)</td>
+<td><p>Ações programáticas:<br>
+• Assistência Médica e Odontológica aos Servidores Civis, Empregados, Militares e seus Dependentes (2004) – para as Unidades Orçamentárias do Ministério da Saúde (FNS – 36901), Fiocruz (36201), Funasa (36211), ANS (36213) e Anvisa (36212)<br>
+• Reestruturação dos Serviços Ambulatoriais e Hospitalares Prestados pelos Hospitais Universitários Federais (Financiamento Partilhado - REHUF) (20G8)<br>
+• Manutenção e Funcionamento do Programa Farmácia Popular do Brasil pelo Sistema de Co-pagamento (20YS)<br>
+• Apoio à Manutenção dos Polos de Academia da Saúde (217U)<br>
+• Estruturação de Academias da Saúde(20YL)<br>
+</p>
+<p>Unidades orçamentárias:<br>
+• ANVISA (36212), com exceção das despesas da Ação 2004<br>
+• ANS (36213), ), com exceção das despesas da Ação 2004<br>
+</p>
+<p>Fontes de recursos detalhada:<br>
+• Compensação Financeira pela produção de Petróleo,Gás Natural e Outros (0142000000, 6142000000 e 6342000000)<br>
+• Parcela da Saúde – Royalties 3ºart. 2ºl. Lei no. 12858/2013 (0142369010, 0342369010 e 6142369010)<br>
+</p>
+<p>Modalidade de aplicação<br>
+• Transferência a Instituições Multigovernamentais (70)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SHA_Uniao <span class="ot">&lt;-</span> df_final <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(UO_Orgao_Maximo <span class="sc">==</span> <span class="st">"MINISTERIO DA SAUDE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>, Fonte_Recursos_Detalhada_COD, Iduso_COD, Unidade_Orcamentaria_COD, Unidade_Orcamentaria, UG_Executora_COD, UG_Executora, Subfuncao_COD, Acao_Cod, Categoria_Economica_Despesa_COD, Modalidade_Aplicacao_COD ,<span class="st">`</span><span class="at">DESPESAS PAGAS</span><span class="st">`</span>, <span class="st">`</span><span class="at">RESTOS A PAGAR PROCESSADOS PAGOS</span><span class="st">`</span>, <span class="st">`</span><span class="at">RESTOS A PAGAR NAO PROCESSADOS PAGOS</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Categoria_Economica_Despesa_COD <span class="sc">%in%</span> <span class="st">"3"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Iduso_COD <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> (Acao_Cod <span class="sc">==</span> <span class="st">"2004"</span> <span class="sc">&amp;</span> Unidade_Orcamentaria_COD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"36901"</span>, <span class="st">"36211"</span>, <span class="st">"36213"</span>, <span class="st">"36212"</span>)) <span class="sc">|</span> Acao_Cod <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"20G8"</span>, <span class="st">"20YS"</span>, <span class="st">"217U"</span>, <span class="st">"20YL"</span>) <span class="sc">|</span> Modalidade_Aplicacao_COD <span class="sc">==</span> <span class="st">"70"</span> <span class="sc">|</span> Fonte_Recursos_Detalhada_COD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"0142000000"</span>, <span class="st">"6142000000"</span>, <span class="st">"6342000000"</span>, <span class="st">"0142369010"</span>, <span class="st">"0342369010"</span>, <span class="st">"6142369010"</span>) <span class="sc">|</span> (Unidade_Orcamentaria_COD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"36212"</span>, <span class="st">"36213"</span>) <span class="sc">&amp;</span> Acao_Cod <span class="sc">!=</span> <span class="st">"2004"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"DESPESAS PAGAS"</span>, <span class="st">"RESTOS A PAGAR PROCESSADOS PAGOS"</span>, <span class="st">"RESTOS A PAGAR NAO PROCESSADOS PAGOS"</span>), <span class="sc">~</span><span class="fu">replace_na</span>(.,<span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">resultado =</span> <span class="st">`</span><span class="at">DESPESAS PAGAS</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">RESTOS A PAGAR PROCESSADOS PAGOS</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">RESTOS A PAGAR NAO PROCESSADOS PAGOS</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>, resultado) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Ano Lançamento</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">resultado_final_uniao_sus =</span> <span class="fu">round</span>(<span class="fu">sum</span>(resultado),<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculando-a-gasto-dos-entes-subnacionais" class="level3">
+<h3 class="anchored" data-anchor-id="calculando-a-gasto-dos-entes-subnacionais">Calculando a gasto dos entes subnacionais</h3>
+<p>As despesas aqui consideradas são aquelas realizadas por Estados, Distrito Federal e Municípios. São consideradas as despesas correntes em ASPS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> e ao contrário das estimativas para a União, utiliza-se a fase de liquidação das despesas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<section id="estados" class="level4">
+<h4 class="anchored" data-anchor-id="estados">Estados</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importando a base --------------------------</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Diretório onde estão os arquivos xlsx</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>diretorio <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>dir_dados <span class="ot">&lt;-</span> <span class="fu">file.path</span>(diretorio, <span class="st">"dados_estados_munics"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar os arquivos no diretório de dados</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>arquivos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> dir_dados, <span class="at">pattern =</span> <span class="st">"estadual"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>arquivo_estadual <span class="ot">&lt;-</span> arquivos[<span class="dv">1</span>]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar as abas específicas como data frames separados</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(df_2021 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(arquivo_estadual, <span class="at">sheet =</span> <span class="st">"2021"</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(df_2022 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(arquivo_estadual, <span class="at">sheet =</span> <span class="st">"2022"</span>))</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Fazendo as modificações necessárias nos DFs--------</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir uma função para renomear as colunas</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>modificar_dataframe <span class="ot">&lt;-</span> <span class="cf">function</span>(df, ano) {</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Renomear as primeiras três colunas</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">'cod_UF'</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">'UF'</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">'nome_UF'</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Obter os nomes das colunas a partir da quarta coluna</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  vecnames <span class="ot">&lt;-</span> <span class="fu">names</span>(df)[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Substituir nomes que contêm números de 1 a 9 por NA</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  vecnames[<span class="fu">grepl</span>(<span class="st">'[1-9]'</span>, vecnames)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Preencher valores NA com o último valor não-NA à esquerda</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  vecnames <span class="ot">&lt;-</span> <span class="fu">na.locf</span>(vecnames)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Obter os nomes originais das colunas para criar vecnames3</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  vecnames2 <span class="ot">&lt;-</span> df[<span class="dv">1</span>, <span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  vecnames3 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(vecnames, <span class="st">'_'</span>, vecnames2)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Atualizar os nomes das colunas a partir da quarta coluna</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)] <span class="ot">&lt;-</span> vecnames3</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remover a primeira linha (que foi usada para obter vecnames2)</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df[<span class="sc">-</span><span class="dv">1</span>, ]</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Transformar o data frame de formato largo para formato longo</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>  melt.data <span class="ot">&lt;-</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">'cod_UF'</span>, <span class="st">'UF'</span>, <span class="st">'nome_UF'</span>))</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Converter a coluna 'variable' para caractere</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>variable <span class="ot">&lt;-</span> <span class="fu">as.character</span>(melt.data<span class="sc">$</span>variable)</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Separar a coluna 'variable' em 'Fase_Despesa' e 'Natureza'</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>  melt.data <span class="ot">&lt;-</span> melt.data <span class="sc">%&gt;%</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(variable, <span class="fu">c</span>(<span class="st">'Fase_Despesa'</span>, <span class="st">'Natureza'</span>), <span class="st">'_'</span>)</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Criar a coluna 'ano'</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>ano <span class="ot">&lt;-</span> ano</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Converter a coluna 'value' para numérico</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>value <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(melt.data<span class="sc">$</span>value)</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remover acentos da coluna 'nome_UF'</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>nome_UF <span class="ot">&lt;-</span> <span class="fu">iconv</span>(melt.data<span class="sc">$</span>nome_UF, <span class="at">from =</span> <span class="st">'UTF-8'</span>, <span class="at">to =</span> <span class="st">'ASCII//TRANSLIT'</span>)</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(melt.data)</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de data frames</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>dfs <span class="ot">&lt;-</span> <span class="fu">list</span>(df_2021, df_2022)</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>anos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2021"</span>, <span class="st">"2022"</span>)</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar a função de renomeação a cada data frame na lista</span></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>dfs_modificados <span class="ot">&lt;-</span> <span class="fu">mapply</span>(modificar_dataframe, dfs, anos, <span class="at">SIMPLIFY =</span> F)</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Separar os data frames modificados de volta para as variáveis individuais</span></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>df_2021 <span class="ot">&lt;-</span> dfs_modificados[[<span class="dv">1</span>]]</span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>df_2022 <span class="ot">&lt;-</span> dfs_modificados[[<span class="dv">2</span>]]</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>df_2021_2022 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_2021, df_2022)</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculando a Despesa total corrente em ASPS dos Estados---------</span></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>resultado_estadual <span class="ot">&lt;-</span> df_2021_2022 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Natureza <span class="sc">==</span> <span class="st">"Despesas correntes em ASPS"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ano) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_ufs =</span> <span class="fu">round</span>(<span class="fu">sum</span>(value)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="municípios" class="level4">
+<h4 class="anchored" data-anchor-id="municípios">Municípios</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importando a base --------------------------</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Diretório onde estão os arquivos xlsx</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>diretorio <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dir_dados <span class="ot">&lt;-</span> <span class="fu">file.path</span>(diretorio, <span class="st">"dados_estados_munics"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar os arquivos no diretório de dados</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>arquivos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> dir_dados, <span class="at">pattern =</span> <span class="st">"munic"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>arquivo_munic <span class="ot">&lt;-</span> arquivos[<span class="dv">1</span>]</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar as abas específicas como data frames separados</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(df_2021_munic <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(arquivo_munic, <span class="at">sheet =</span> <span class="st">"2021"</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(df_2022_munic <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(arquivo_munic, <span class="at">sheet =</span> <span class="st">"2022"</span>))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Fazendo as modificações necessárias nos DFs--------</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir uma função para renomear as colunas</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>modificar_dataframe_munic <span class="ot">&lt;-</span> <span class="cf">function</span>(df, ano) {</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Renomear as primeiras três colunas</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">'cod_munic'</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">'Munic'</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">'UF'</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Obter os nomes das colunas a partir da quarta coluna</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  vecnames <span class="ot">&lt;-</span> <span class="fu">names</span>(df)[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Substituir nomes que contêm números de 1 a 9 por NA</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  vecnames[<span class="fu">grepl</span>(<span class="st">'[1-9]'</span>, vecnames)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Preencher valores NA com o último valor não-NA à esquerda</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  vecnames <span class="ot">&lt;-</span> <span class="fu">na.locf</span>(vecnames)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Obter os nomes originais das colunas para criar vecnames3</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  vecnames2 <span class="ot">&lt;-</span> df[<span class="dv">1</span>, <span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  vecnames3 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(vecnames, <span class="st">'_'</span>, vecnames2)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Atualizar os nomes das colunas a partir da quarta coluna</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)] <span class="ot">&lt;-</span> vecnames3</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remover a primeira linha (que foi usada para obter vecnames2)</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df[<span class="sc">-</span><span class="dv">1</span>, ]</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Transformar o data frame de formato largo para formato longo</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  melt.data <span class="ot">&lt;-</span> <span class="fu">melt</span>(df, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">'cod_munic'</span>, <span class="st">'Munic'</span>, <span class="st">'UF'</span>))</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Converter a coluna 'variable' para caractere</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>variable <span class="ot">&lt;-</span> <span class="fu">as.character</span>(melt.data<span class="sc">$</span>variable)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Separar a coluna 'variable' em 'Fase_Despesa' e 'Natureza'</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  melt.data <span class="ot">&lt;-</span> melt.data <span class="sc">%&gt;%</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(variable, <span class="fu">c</span>(<span class="st">'Fase_Despesa'</span>, <span class="st">'Natureza'</span>), <span class="st">'_'</span>)</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Criar a coluna 'ano'</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>ano <span class="ot">&lt;-</span> ano</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Converter a coluna 'value' para numérico</span></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>value <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(melt.data<span class="sc">$</span>value)</span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remover acentos da coluna 'nome_UF'</span></span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>  melt.data<span class="sc">$</span>Munic <span class="ot">&lt;-</span> <span class="fu">iconv</span>(melt.data<span class="sc">$</span>Munic, <span class="at">from =</span> <span class="st">'UTF-8'</span>, <span class="at">to =</span> <span class="st">'ASCII//TRANSLIT'</span>)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(melt.data)</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de data frames</span></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>dfs_munic <span class="ot">&lt;-</span> <span class="fu">list</span>(df_2021_munic, df_2022_munic)</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>anos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2021"</span>, <span class="st">"2022"</span>)</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar a função de renomeação a cada data frame na lista</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>dfs_mounics <span class="ot">&lt;-</span> <span class="fu">mapply</span>(modificar_dataframe_munic, dfs_munic, anos, <span class="at">SIMPLIFY =</span> F)</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Separar os data frames modificados de volta para as variáveis individuais</span></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>df_2021_munic <span class="ot">&lt;-</span> dfs_mounics[[<span class="dv">1</span>]]</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>df_2022_munic <span class="ot">&lt;-</span> dfs_mounics[[<span class="dv">2</span>]]</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>df_2021_2022_munic <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_2021_munic, df_2022_munic)</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculando a Despesa total corrente em ASPS dos Estados---------</span></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>resultado_municipal <span class="ot">&lt;-</span> df_2021_2022_munic <span class="sc">%&gt;%</span> </span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Natureza <span class="sc">==</span> <span class="st">"Despesas correntes em ASPS"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ano) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_munics =</span> <span class="fu">round</span>(<span class="fu">sum</span>(value)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="resultados" class="level2">
+<h2 class="anchored" data-anchor-id="resultados">Resultados</h2>
+<p>A Tabela 2 mostra os valores financiados pela União (Ministério da Saúde e Hospitais Universitários Federais).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>SHA_Uniao <span class="ot">&lt;-</span> SHA_Uniao <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"ano"</span> <span class="ot">=</span> <span class="st">'Ano Lançamento'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">resultado_final_uniao_sus =</span> <span class="fu">round</span>(resultado_final_uniao_sus<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>, <span class="dv">2</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>SHA_Uniao_MEC_acoes <span class="ot">&lt;-</span> SHA_Uniao_MEC_acoes <span class="sc">%&gt;%</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"ano"</span> <span class="ot">=</span> <span class="st">'Ano Lançamento'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">resultado_final_mec =</span> <span class="fu">round</span>(resultado_final_mec<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>,<span class="dv">2</span>))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">cbind</span>(SHA_Uniao, SHA_Uniao_MEC_acoes, resultado_estadual, resultado_municipal)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> resultado[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>resultado<span class="sc">$</span>total <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(resultado[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>resultado_renamed <span class="ot">&lt;-</span> resultado <span class="sc">%&gt;%</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Ano"</span> <span class="ot">=</span> ano, <span class="st">"MS"</span> <span class="ot">=</span> resultado_final_uniao_sus, <span class="st">"MEC"</span> <span class="ot">=</span> resultado_final_mec, <span class="st">"Total Estados"</span> <span class="ot">=</span> total_ufs, <span class="st">"Total Municípios"</span> <span class="ot">=</span> total_munics ,<span class="st">"Total"</span> <span class="ot">=</span> total)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(resultado_renamed, <span class="at">caption =</span> <span class="st">"Tabela 2 - Estimativas Despesas Sistema Único de Saúde (HF.1.1.1)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> F, </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">"center"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Tabela 2 - Estimativas Despesas Sistema Único de Saúde (HF.1.1.1)</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Ano </th>
+   <th style="text-align:right;"> MS </th>
+   <th style="text-align:right;"> MEC </th>
+   <th style="text-align:right;"> Total Estados </th>
+   <th style="text-align:right;"> Total Municípios </th>
+   <th style="text-align:right;"> Total </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2021 </td>
+   <td style="text-align:right;"> 170.68 </td>
+   <td style="text-align:right;"> 11.52 </td>
+   <td style="text-align:right;"> 88.86 </td>
+   <td style="text-align:right;"> 114.39 </td>
+   <td style="text-align:right;"> 385.45 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2022 </td>
+   <td style="text-align:right;"> 149.98 </td>
+   <td style="text-align:right;"> 11.47 </td>
+   <td style="text-align:right;"> 101.52 </td>
+   <td style="text-align:right;"> 134.41 </td>
+   <td style="text-align:right;"> 397.38 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Dessa forma, sem a realização de ajustes, em 2022, as despesas estimadas do SUS somaram R$ 397,38 bi, sendo R$ 149,98 bi provenientes do Ministério da Saúde, R$ 11,47 bi provenientes dos Hospitais Universitários Federais, além de R$ 101,52 bi dos Estados e Distrito Federal, e R$ 134,41 bi dos Municípios.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dados_grafico <span class="ot">&lt;-</span> resultado_renamed <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(MS, MEC, <span class="st">`</span><span class="at">Total Estados</span><span class="st">`</span>, <span class="st">`</span><span class="at">Total Municípios</span><span class="st">`</span>), </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Parte"</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Valor"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Ano) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Total_ano =</span> <span class="fu">sum</span>(Valor),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Share =</span> Valor <span class="sc">/</span> Total_ano <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>cores_pastel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MS"</span> <span class="ot">=</span> <span class="st">"#FFB3BA"</span>, <span class="st">"MEC"</span> <span class="ot">=</span> <span class="st">"#FFDFBA"</span>, <span class="st">"Total Estadual"</span> <span class="ot">=</span> <span class="st">"#FFFFBA"</span>, <span class="st">"Total Municípios"</span> <span class="ot">=</span> <span class="st">"#BAFFC9"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plot_participacao <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados_grafico, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Ano), <span class="at">y =</span> Share, <span class="at">fill =</span> Parte)) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, Share)), </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico 1 - Participação relativa na composição do gasto SUS (HF.1.1.1)"</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Ano"</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Participação (%)"</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Parte"</span>) <span class="sc">+</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cores_pastel) <span class="sc">+</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_participacao)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="relatorio_hf_sus_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Identificou-se um aumento das despesas em relação a 2021 da magnitude de 3,09%, puxada principalmente pelo aumento das despesas dos entes subnacionais, como mostra o Gráfico 1. No caso da União, observa-se uma queda de 12,12%, decorrente principalmente da diminuição dos créditos extraordinários da Covid-19.</p>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>(Despesas correntes) - (Inativos e Pensionistas) - (Despesas correntes com outras ações e serviços não computados<u>)</u>&nbsp;= <strong>Despesas correntes em ASPS</strong><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>A publicação do SHA de 2022, que trata sobre as despesas de 2015-2019, especifica que a fase de liquidação permite aproximação melhor do gasto real de Estados e Municípios<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
